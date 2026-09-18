@@ -131,11 +131,57 @@ def setup_outputs(out_dir, near=8.0, far=28.0):
     os.makedirs(os.path.join(out_dir, "preview"), exist_ok=True)
     os.makedirs(os.path.join(out_dir, "depth"), exist_ok=True)
 
+# ----------------------------------------------------------------------------- colours (optional)
+
+def _mat(name, rgb):
+    m = bpy.data.materials.get(name)
+    if m is None:
+        m = bpy.data.materials.new(name)
+        m.use_nodes = True
+        bsdf = m.node_tree.nodes.get("Principled BSDF")
+        if bsdf:
+            bsdf.inputs["Base Color"].default_value = (*rgb, 1.0)
+            bsdf.inputs["Roughness"].default_value = 0.9
+    return m
+
+
+def colorize_scene(palette=None):
+    """Assign flat colours so a 'keep unchanged' VACE pass can carry them into the generated video."""
+    palette = palette or {}
+    base = {
+        "Ground": (0.32, 0.62, 0.20), "Post": (0.55, 0.32, 0.13), "Rail": (0.62, 0.38, 0.16),
+        "mom_Head": (0.96, 0.80, 0.69), "mom_Torso": (0.18, 0.45, 0.50), "mom_Leg": (0.93, 0.90, 0.82),
+        "mom_Foot": (0.95, 0.95, 0.95), "mom_Arm": (0.18, 0.45, 0.50), "mom_Hand": (0.96, 0.80, 0.69),
+        "kid_Head": (0.96, 0.80, 0.69), "kid_Torso": (0.93, 0.72, 0.18), "kid_Leg": (0.93, 0.72, 0.18),
+        "kid_Foot": (0.15, 0.35, 0.80), "kid_Arm": (0.97, 0.97, 0.95), "kid_Hand": (0.96, 0.80, 0.69),
+    }
+    base.update(palette)
+    for ob in bpy.data.objects:
+        if ob.type != "MESH":
+            continue
+        key = None
+        for k in base:
+            if ob.name == k or ob.name.startswith(k):
+                key = k
+        if key is None:
+            for k in base:
+                if "_" in k and ob.name.startswith(k.split("_")[0] + "_") and ob.name.split("_", 1)[1].startswith(k.split("_")[1]):
+                    key = k
+        if key:
+            ob.data.materials.clear()
+            ob.data.materials.append(_mat(key, base[key]))
+    world = bpy.context.scene.world
+    if world and world.use_nodes:
+        bg = world.node_tree.nodes.get("Background")
+        if bg:
+            bg.inputs[0].default_value = (0.55, 0.75, 0.95, 1)  # sky blue
+
 # ----------------------------------------------------------------------------- mannequin
 
-def add_mannequin(name, location, height=1.65, facing_deg=0.0, action="wave", frames=49, head_ratio=6.0):
+def add_mannequin(name, location, height=1.65, facing_deg=0.0, action="wave", frames=49, head_ratio=6.0, window=None):
     """Primitive mannequin with proper shoulder/hip pivots. `height` in scene units, `head_ratio` = body height /
-    head height (6 = cartoon-ish, 7.5 = realistic). Actions: idle, wave, point, jump, turn. Returns the root empty."""
+    head height (6 = cartoon-ish, 7.5 = realistic). Actions: idle, wave, point, jump, turn. `window=(f0, f1)` limits
+    the action to those frames (idle outside), which is how gestures get aligned to dialogue timing. Returns the root."""
     s = height / 1.65  # everything below is authored for a 1.65 unit figure
     head_h = height / head_ratio
     bpy.ops.object.empty_add(location=location)
@@ -188,19 +234,24 @@ def add_mannequin(name, location, height=1.65, facing_deg=0.0, action="wave", fr
     objs = {o.name.split("_", 1)[1]: o for o in bpy.data.objects if o.name.startswith(name + "_")}
     shR, shL = objs["ShoulderR"], objs["ShoulderL"]
     base_yaw = math.radians(facing_deg)
+    w0, w1 = (1, frames) if window is None else (max(1, int(window[0])), min(frames, int(window[1])))
     for f in range(1, frames + 1):
-        t = (f - 1) / max(1, frames - 1)
-        if action == "turn":
+        active = w0 <= f <= w1
+        t = (f - w0) / max(1, w1 - w0) if active else 0.0
+        act = action if active else "idle"
+        if act == "turn":
             key(root, f, rot=(0, 0, base_yaw + math.radians(-30 + 60 * t)))
-        if action == "wave":
+            key(shR, f, rot=(math.radians(6), 0, 0))
+            key(shL, f, rot=(math.radians(6), 0, 0))
+        elif act == "wave":
             # right arm raised sideways (rotate about Y at the shoulder), hand wags about X
             key(shR, f, rot=(math.radians(10 * math.sin(t * math.pi * 4)), math.radians(-150), 0))
             key(shL, f, rot=(math.radians(8), 0, 0))
-        elif action == "point":
+        elif act == "point":
             key(shR, f, rot=(math.radians(-85), math.radians(-25), 0))  # arm forward-ish
             key(shL, f, rot=(math.radians(8), 0, 0))
             key(root, f, rot=(0, 0, base_yaw + math.radians(15 * t)))
-        elif action == "jump":
+        elif act == "jump":
             z = location[2] + max(0.0, 0.35 * s * math.sin(t * math.pi * 2)) if t < 0.5 else location[2]
             key(root, f, loc=(location[0], location[1], z))
             key(shR, f, rot=(0, math.radians(-40 - 100 * max(0.0, math.sin(t * math.pi * 2))), 0))

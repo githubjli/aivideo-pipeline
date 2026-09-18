@@ -1,0 +1,62 @@
+{
+  "spec": {
+    "name": "demo-dialogue",
+    "shot": "medium",
+    "fps": 25,
+    "seed": 42,
+    "resolution": "832x480",
+    "colored": false,
+    "prompt": "A bright 3D animated children's educational scene, medium shot. The two referenced characters stand beside the cut-off corner of a wooden garden fence and talk to each other with natural lip sync and head motion. The mother points at the fence corner while she speaks; the child listens, then answers excitedly and jumps. The fence has evenly spaced wooden posts and two horizontal rails. Soft green grass, clear sky, warm sunlight, clean stylized Pixar-like rendering, consistent appearance of both characters.",
+    "figures": [
+      {
+        "name": "mom",
+        "action": "point",
+        "ref": "productions/math/tests/avatar/mom-ref-front.png",
+        "describe": "the mother with short dark hair, round glasses, a teal shirt, a brown belt with a tool pouch and white trousers",
+        "voice": "productions/math/tests/avatar/mom-test-zh.wav"
+      },
+      {
+        "name": "kid",
+        "action": "jump",
+        "ref": "productions/math/tests/avatar/kid-ref-front.png",
+        "describe": "her small child, a little boy with messy dark hair wearing a yellow overall over a white t-shirt and blue sneakers",
+        "voice": "productions/math/tests/avatar/out/tts-indextts2-mom-test.wav"
+      }
+    ],
+    "dialogue": [
+      {
+        "speaker": "mom",
+        "text": "剪掉一个角，围栏就能少用一点吗？",
+        "audio": "productions/math/tests/avatar/mom-test-zh.wav"
+      },
+      {
+        "speaker": "kid",
+        "text": "妈妈，少掉的那一段围栏去哪儿了？",
+        "audio": "productions/math/tests/avatar/out/tts-indextts2-kid-line.wav"
+      }
+    ]
+  },
+  "frames": 205,
+  "fps": 25,
+  "timeline": [
+    {
+      "line": 1,
+      "speaker": "mom",
+      "start": 0.0,
+      "end": 4.383129,
+      "text": "剪掉一个角，围栏就能少用一点吗？"
+    },
+    {
+      "line": 2,
+      "speaker": "kid",
+      "start": 4.383129,
+      "end": 7.877732,
+      "text": "妈妈，少掉的那一段围栏去哪儿了？"
+    }
+  ],
+  "figures": [
+    "mom:point@1-110",
+    "kid:jump@110-197"
+  ],
+  "control": "EVI"
+}
