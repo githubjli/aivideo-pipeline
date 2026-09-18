@@ -902,5 +902,12 @@
     "file": "wan2.1_Vace_14B_module_quanto_mbf16_int8.safetensors",
     "size": 3765098792,
     "sha256": "587987c73307671d68f8b2c55361ec9a8ce75da008f6dcdfe797476949fb592f"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "wan2.1_multitalk_14B_quanto_mbf16_int8.safetensors",
+    "size": 2565168026,
+    "sha256": "e276caeecafa4dbc9739e3f59f91c92ecfce5cbdaf59071e616d1d0f5a3e45e2"
   }
 ]
