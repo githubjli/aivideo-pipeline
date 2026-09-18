@@ -41,6 +41,10 @@ productions/**/frames/
 # --- business analysis and planning notes stay local (not part of the pipeline) ---
 market/
 
+# --- Mixamo assets may not be redistributed; keep only the README in the rig folder ---
+productions/**/rig/*.fbx
+productions/**/pose/
+
 # --- keep small source assets and templates ---
 !productions/**/*.json
 !productions/**/*.md

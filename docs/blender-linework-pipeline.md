@@ -93,6 +93,15 @@ ComfyUI_windows_portable\python_embeded\python.exe -X utf8 -s run-workflow.py 04
 4. 提示词要把参考角色和动作写明（"the referenced mother character ... turns and waves"），并描述参考图之外的背景。
 5. 复现命令：Blender 加 `--figure --focus-figure` 渲染；`run-avatar-test.ps1 -Settings productions/math/tests/avatar/vace-fusionix-medium-canny.json -Attention sage2`。
 
+## 路线 A：Mixamo 骨骼角色（2026-09-18 脚本就绪，等待资产）
+
+- 资产接收目录与下载清单：`productions/math/shared/characters/duo/rig/README.md`（角色 FBX 带蒙皮 T-pose；动作 FBX 不带蒙皮、30fps）。FBX 不入库。
+- `tools/blender/mathscene.py`：围栏、灯光（主光 + 补光，避免纯黑剪影）、相机环绕、深度合成器、以及从骨架导出 OpenPose 18 点关节的函数；支持 Mixamo（mixamorig:* 命名）与 Rigify 元骨架两种骨骼命名。
+- `tools/blender/render-rigged-shot.py`：导入角色 FBX 并按 `--height-m` 缩放到 1.65 单位，导入动作 FBX 把动作挂到角色骨架上（30fps 自动重映射到 24fps），放到剪角旁，`--shot medium|full` 选相机，输出 preview/、depth/、pose/joints.json 和 scene.blend。`--selftest-metarig` 用 Blender 自带 Rigify 元骨架加脚本化的转身挥手代替 FBX，用于在没有 Mixamo 文件时验证流程。
+- `tools/blender/draw-openpose.py`：把 joints.json 画成 ControlNet 配色的 OpenPose 序列（黑底、肢体椭圆、关节圆点），用 ComfyUI 自带 Python 运行。
+- 自测（selftest-metarig，25 帧中景）：渲染 + 导出 + 绘制全部通过，骨架比例和配色正确；发现默认朝向让人物侧对相机，已把 `--facing` 默认改为 0（Mixamo 与 Rigify 导入后都面向 -Y）。元骨架没有网格，预览里只有围栏，这是预期。
+- 下一步：Mixamo 文件到位后跑 `render-rigged-shot.py`，预览走线稿（EV）、骨架走姿态原始格式（V + P 组合，PSV），参考图仍用 mom-ref-front.png，与圆柱人偶版对照。
+
 ## 跨段、跨镜头一致性的候选模型
 
 | 候选 | 所在环境 | 能力 | 代价 | 建议 |
