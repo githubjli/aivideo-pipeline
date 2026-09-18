@@ -131,6 +131,86 @@ def setup_outputs(out_dir, near=8.0, far=28.0):
     os.makedirs(os.path.join(out_dir, "preview"), exist_ok=True)
     os.makedirs(os.path.join(out_dir, "depth"), exist_ok=True)
 
+# ----------------------------------------------------------------------------- mannequin
+
+def add_mannequin(name, location, height=1.65, facing_deg=0.0, action="wave", frames=49, head_ratio=6.0):
+    """Primitive mannequin with proper shoulder/hip pivots. `height` in scene units, `head_ratio` = body height /
+    head height (6 = cartoon-ish, 7.5 = realistic). Actions: idle, wave, point, jump, turn. Returns the root empty."""
+    s = height / 1.65  # everything below is authored for a 1.65 unit figure
+    head_h = height / head_ratio
+    bpy.ops.object.empty_add(location=location)
+    root = bpy.context.active_object
+    root.name = name
+    root.rotation_euler = (0, 0, math.radians(facing_deg))
+
+    def prim(pname, kind, loc, scale, parent):
+        if kind == "sphere":
+            bpy.ops.mesh.primitive_uv_sphere_add(radius=0.5, location=(0, 0, 0), segments=24, ring_count=12)
+        else:
+            bpy.ops.mesh.primitive_cylinder_add(radius=0.5, depth=1.0, location=(0, 0, 0), vertices=24)
+        ob = bpy.context.active_object
+        ob.name = f"{name}_{pname}"
+        ob.parent = parent
+        ob.location = loc
+        ob.scale = scale
+        return ob
+
+    def pivot(pname, loc, parent):
+        bpy.ops.object.empty_add(location=(0, 0, 0))
+        e = bpy.context.active_object
+        e.name = f"{name}_{pname}"
+        e.parent = parent
+        e.location = loc
+        e.rotation_mode = "XYZ"
+        return e
+
+    torso_h, leg_h, arm_h = 0.60 * s, 0.78 * s, 0.58 * s
+    hip_z = leg_h
+    shoulder_z = hip_z + torso_h
+    prim("Head", "sphere", (0, 0, shoulder_z + head_h * 0.55), (head_h * 0.92, head_h * 0.92, head_h), root)
+    prim("Torso", "cyl", (0, 0, hip_z + torso_h / 2), (0.30 * s, 0.17 * s, torso_h), root)
+    for side, sx in (("L", -1), ("R", 1)):
+        hip = pivot(f"Hip{side}", (sx * 0.11 * s, 0, hip_z), root)
+        prim(f"Leg{side}", "cyl", (0, 0, -leg_h / 2), (0.11 * s, 0.11 * s, leg_h), hip)
+        prim(f"Foot{side}", "cyl", (0, -0.05 * s, -leg_h + 0.04 * s), (0.12 * s, 0.24 * s, 0.08 * s), hip)
+        sh = pivot(f"Shoulder{side}", (sx * 0.19 * s, 0, shoulder_z - 0.04 * s), root)  # torso half-width 0.15 + arm radius
+        prim(f"Arm{side}", "cyl", (0, 0, -arm_h / 2), (0.085 * s, 0.085 * s, arm_h), sh)
+        prim(f"Hand{side}", "sphere", (0, 0, -arm_h - 0.05 * s), (0.09 * s, 0.09 * s, 0.10 * s), sh)
+
+    def key(ob, frame, rot=None, loc=None):
+        if rot is not None:
+            ob.rotation_euler = rot
+            ob.keyframe_insert(data_path="rotation_euler", frame=frame)
+        if loc is not None:
+            ob.location = loc
+            ob.keyframe_insert(data_path="location", frame=frame)
+
+    objs = {o.name.split("_", 1)[1]: o for o in bpy.data.objects if o.name.startswith(name + "_")}
+    shR, shL = objs["ShoulderR"], objs["ShoulderL"]
+    base_yaw = math.radians(facing_deg)
+    for f in range(1, frames + 1):
+        t = (f - 1) / max(1, frames - 1)
+        if action == "turn":
+            key(root, f, rot=(0, 0, base_yaw + math.radians(-30 + 60 * t)))
+        if action == "wave":
+            # right arm raised sideways (rotate about Y at the shoulder), hand wags about X
+            key(shR, f, rot=(math.radians(10 * math.sin(t * math.pi * 4)), math.radians(-150), 0))
+            key(shL, f, rot=(math.radians(8), 0, 0))
+        elif action == "point":
+            key(shR, f, rot=(math.radians(-85), math.radians(-25), 0))  # arm forward-ish
+            key(shL, f, rot=(math.radians(8), 0, 0))
+            key(root, f, rot=(0, 0, base_yaw + math.radians(15 * t)))
+        elif action == "jump":
+            z = location[2] + max(0.0, 0.35 * s * math.sin(t * math.pi * 2)) if t < 0.5 else location[2]
+            key(root, f, loc=(location[0], location[1], z))
+            key(shR, f, rot=(0, math.radians(-40 - 100 * max(0.0, math.sin(t * math.pi * 2))), 0))
+            key(shL, f, rot=(0, math.radians(40 + 100 * max(0.0, math.sin(t * math.pi * 2))), 0))
+        else:  # idle: slight sway
+            key(root, f, rot=(0, 0, base_yaw + math.radians(4 * math.sin(t * math.pi * 2))))
+            key(shR, f, rot=(math.radians(6), 0, 0))
+            key(shL, f, rot=(math.radians(6), 0, 0))
+    return root
+
 # ----------------------------------------------------------------------------- pose export
 
 # OpenPose (COCO-18) keypoint order used by ControlNet/VACE pose maps.

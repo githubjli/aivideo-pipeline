@@ -46,6 +46,8 @@ def assets():
     # VACE FusioniX 14B (defaults/vace_14B_fusionix.json): distilled T2V base + VACE control module, INT8.
     # Text encoder, xlm-roberta, Wan2.1 VAEs are already listed above.
     add(wan,'','Wan14BT2VFusioniX_quanto_bf16_int8.safetensors wan2.1_Vace_14B_module_quanto_mbf16_int8.safetensors')
+    # Multitalk module: with the same FusioniX base + VACE module gives defaults/vace_multitalk_14B.json (talking + control + refs).
+    add(wan,'','wan2.1_multitalk_14B_quanto_mbf16_int8.safetensors')
     # Audio stack (file lists dumped from each handler's query_model_files + URLs, int8 variants where offered):
     tts='DeepBeepMeep/TTS'
     # Index TTS 2 (voice cloning)

@@ -93,6 +93,18 @@ ComfyUI_windows_portable\python_embeded\python.exe -X utf8 -s run-workflow.py 04
 4. 提示词要把参考角色和动作写明（"the referenced mother character ... turns and waves"），并描述参考图之外的背景。
 5. 复现命令：Blender 加 `--figure --focus-figure` 渲染；`run-avatar-test.ps1 -Settings productions/math/tests/avatar/vace-fusionix-medium-canny.json -Attention sage2`。
 
+## 稳定性测试序列（2026-09-18 15:00–15:20，人偶 + VACE FusioniX EVI + 参考图，种子 42）
+
+人偶改为 `mathscene.add_mannequin`：肩、髋各有枢轴，脚、手为独立部件，头身比可调（默认 6），动作 idle / wave / point / jump / turn；`render-mannequin-shot.py` 支持 1–2 个人物与 close / medium / wide / full 四种相机。
+
+| 步骤 | 场景 | 结果 | 耗时 / 显存 |
+| --- | --- | --- | --- |
+| 1 单角色三景别 | s1-mom-close / medium / wide | 三个镜头身份一致（发型、眼镜、衬衫、腰包、白裤）。构图只跟随一半：近景被拉成半身、远景被拉成中景，模型偏好中景构图 | 各约 130 秒 / 9.2 GB |
+| 2 双人 | s2-duo-medium，mom:wave + kid:idle，image_refs = [妈妈, 孩子] | 两人都出现且左右位置正确，孩子的黄色背带裤、乱发、蓝鞋准确；妈妈上身准确但裤子漂成牛仔裤 | 134 秒 / 9.3 GB |
+| 3 双动作 | s3-duo-actions，mom:point + kid:jump | 妈妈右臂指向、孩子跳起双臂上举都被执行；身份同上 | 135 秒 / 8.9 GB |
+
+结论：参考图绑定在双人场景可用，绑定顺序与画面左右无关、按提示词描述和人偶体型匹配；近景/远景需要另想办法（近景可改用口型模型，远景接受"中景化"或改用无角色的几何控制）。妈妈裤子漂色说明参考图应包含完整服装（当前裁剪只到大腿），下一版参考图改为全身。
+
 ## 路线 A：Mixamo 骨骼角色（2026-09-18 脚本就绪，等待资产）
 
 - 资产接收目录与下载清单：`productions/math/shared/characters/duo/rig/README.md`（角色 FBX 带蒙皮 T-pose；动作 FBX 不带蒙皮、30fps）。FBX 不入库。
