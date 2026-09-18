@@ -1,0 +1,892 @@
+[
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "wan2.1_image2video_480p_14B_quanto_mbf16_int8.safetensors",
+    "size": 17012166697,
+    "sha256": "939a5b32dc571c5fa4ba1d38434d4014d831271dceef0125cc23d95d9f4060f0"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "wan2.1_infinitetalk_single_14B_quanto_mbf16_int8.safetensors",
+    "size": 2565167934,
+    "sha256": "6559e1e35a3b764a7ee352db2c658ec71cfdfc42f6cea347d66979562e2f0448"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "Wan2.1_VAE.safetensors",
+    "size": 507593157,
+    "sha256": "3ce0c02b9470532e7f63f3e2f8e83b0681fdeaa432e969c412482d2b3b78267b"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "Wan2.1_VAE_bf16.safetensors",
+    "size": 253808213,
+    "sha256": "1cfb45efe23ae6c9a8ae03667922f78e5d53ce81ecb29913f91f03f62230a2c2"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "Wan2.1_VAE_upscale2x_imageonly_real_v1.safetensors",
+    "size": 507684560,
+    "sha256": "2413554bbec24215185662d009893cf4666b8e777efece2d895e03e1a6b63e06"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "umt5-xxl/models_t5_umt5-xxl-enc-quanto_int8.safetensors",
+    "size": 6733337738,
+    "sha256": "5e4961851c78838931990549810ed51c9036081b2ad80bf464c4e2603c5f922c"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "umt5-xxl/special_tokens_map.json",
+    "size": 6623,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "umt5-xxl/spiece.model",
+    "size": 4548313,
+    "sha256": "e3909a67b780650b35cf529ac782ad2b6b26e6d1f849d3fbb6a872905f452458"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "umt5-xxl/tokenizer.json",
+    "size": 16837417,
+    "sha256": "6e197b4d3dbd71da14b4eb255f4fa91c9c1f2068b20a2de2472967ca3d22602b"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "umt5-xxl/tokenizer_config.json",
+    "size": 61728,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "xlm-roberta-large/models_clip_open-clip-xlm-roberta-large-vit-huge-14-bf16.safetensors",
+    "size": 2386119506,
+    "sha256": "742b68fe1cade9e54863aee12aed5390a994269957bd0638799b141cbc236ad8"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "xlm-roberta-large/sentencepiece.bpe.model",
+    "size": 5069051,
+    "sha256": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "xlm-roberta-large/special_tokens_map.json",
+    "size": 280,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "xlm-roberta-large/tokenizer.json",
+    "size": 17082660,
+    "sha256": "62c24cdc13d4c9952d63718d6c9fa4c287974249e16b7ade6d5a85e7bbb75626"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "xlm-roberta-large/tokenizer_config.json",
+    "size": 418,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "chinese-wav2vec2-base/config.json",
+    "size": 1951,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "chinese-wav2vec2-base/pytorch_model.bin",
+    "size": 380261837,
+    "sha256": "be2da40c9e7ae26bfc904a3ed79ebb9e8f060bec6dba85d6a6ae86114bc38901"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "chinese-wav2vec2-base/preprocessor_config.json",
+    "size": 160,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "hunyuan_video_avatar_720_quanto_bf16_int8.safetensors",
+    "size": 13406866821,
+    "sha256": "cfaa6328f7a86d371cfa8e1ddea67685eac99d1fe26ef5d80bab4afd8927d5cf"
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "hunyuan_video_720_quanto_int8_map.json",
+    "size": 24670,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "hunyuan_video_custom_VAE_fp32.safetensors",
+    "size": 985946023,
+    "sha256": "f913e425c1d811ed911b52e727c4dd4461625448d1bf97666fe0592b5ae5a757"
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "hunyuan_video_custom_VAE_config.json",
+    "size": 755,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "hunyuan_video_VAE_fp32.safetensors",
+    "size": 985943868,
+    "sha256": "7c68a6295f9034a88225fbafb1f3258291a08d57a1fdb938233fa57b1b8f4883"
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "hunyuan_video_VAE_config.json",
+    "size": 627,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "llava-llama-3-8b/llava-llama-3-8b-v1_1_vlm_quanto_int8.safetensors",
+    "size": 9432734064,
+    "sha256": "378c1a2fe0b45ff39b3a5ab33437559a260e0439291cbf572b8540454205ccd7"
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "llava-llama-3-8b/config.json",
+    "size": 648,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "llava-llama-3-8b/special_tokens_map.json",
+    "size": 577,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "llava-llama-3-8b/tokenizer.json",
+    "size": 9085808,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "llava-llama-3-8b/tokenizer_config.json",
+    "size": 51653,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "llava-llama-3-8b/preprocessor_config.json",
+    "size": 819,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "clip_vit_large_patch14/text_config.json",
+    "size": 1865,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "clip_vit_large_patch14/merges.txt",
+    "size": 524619,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "clip_vit_large_patch14/model.safetensors",
+    "size": 1710540580,
+    "sha256": "a2bf730a0c7debf160f7a6b50b3aaf3703e7e88ac73de7a314903141db026dcb"
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "clip_vit_large_patch14/preprocessor_config.json",
+    "size": 316,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "clip_vit_large_patch14/special_tokens_map.json",
+    "size": 389,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "clip_vit_large_patch14/tokenizer.json",
+    "size": 2224003,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "clip_vit_large_patch14/tokenizer_config.json",
+    "size": 905,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "clip_vit_large_patch14/vocab.json",
+    "size": 961143,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "whisper-tiny/config.json",
+    "size": 1983,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "whisper-tiny/model.safetensors",
+    "size": 151061672,
+    "sha256": "7ebd0e69e78190ffe1438491fa05cc1f5c1aa3a4c4db3bc1723adbb551ea2395"
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "whisper-tiny/preprocessor_config.json",
+    "size": 184990,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "whisper-tiny/special_tokens_map.json",
+    "size": 2194,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "whisper-tiny/tokenizer_config.json",
+    "size": 282683,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/HunyuanVideo",
+    "revision": "23a191932bec6f6bce2a4b161284aabda1271320",
+    "file": "det_align/detface.pt",
+    "size": 186889103,
+    "sha256": "9117cd7d56ba609ab8ac3dfbe2962245e8e4eaddd5daf0b00332764563cf3e9b"
+  },
+  {
+    "repo": "DeepBeepMeep/LongCat",
+    "revision": "3a364177c02d72d6e88574d24caa81f2a0129e84",
+    "file": "longcat_avatar_v1_5_quanto_bf16_int8.safetensors",
+    "size": 15963273605,
+    "sha256": "e8411564ccee4f3d63156c921386d3ad7e4b3cb785fffc59438175dd96653ebc"
+  },
+  {
+    "repo": "DeepBeepMeep/LongCat",
+    "revision": "3a364177c02d72d6e88574d24caa81f2a0129e84",
+    "file": "longcat_avatar_v1_5/dmd_lora.safetensors",
+    "size": 2523077984,
+    "sha256": "d969115a7f3fbc212a277ed4399f77a1a065d170148c6d4bc272e980cd3e907a"
+  },
+  {
+    "repo": "DeepBeepMeep/LongCat",
+    "revision": "3a364177c02d72d6e88574d24caa81f2a0129e84",
+    "file": "whisper-large-v3/config.json",
+    "size": 1272,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/LongCat",
+    "revision": "3a364177c02d72d6e88574d24caa81f2a0129e84",
+    "file": "whisper-large-v3/generation_config.json",
+    "size": 3903,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/LongCat",
+    "revision": "3a364177c02d72d6e88574d24caa81f2a0129e84",
+    "file": "whisper-large-v3/model.safetensors",
+    "size": 3087130976,
+    "sha256": "a8e94b85976e5864ba3e9525c7e6c83b2a1eca42d4b797a0c7c24d778e40fd95"
+  },
+  {
+    "repo": "DeepBeepMeep/LongCat",
+    "revision": "3a364177c02d72d6e88574d24caa81f2a0129e84",
+    "file": "whisper-large-v3/preprocessor_config.json",
+    "size": 340,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "pose/dw-ll_ucoco_384.onnx",
+    "size": 134399116,
+    "sha256": "724f4ff2439ed61afb86fb8a1951ec39c6220682803b4a8bd4f598cd913b1843"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "pose/yolox_l.onnx",
+    "size": 216746733,
+    "sha256": "7860ae79de6c89a3c1eb72ae9a2756c0ccfbe04b7791bb5880afabd97855a411"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "scribble/netG_A_latest.pth",
+    "size": 17173511,
+    "sha256": "c686ced2a666b4850b4bb6ccf0748031c3eda9f822de73a34b8979970d90f0c6"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "flow/raft-things.pth",
+    "size": 21108000,
+    "sha256": "fcfa4125d6418f4de95d84aec20a3c5f4e205101715a79f193243c186ac9a7e1"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "depth/depth_anything_v2_vitl.pth",
+    "size": 1341395338,
+    "sha256": "a7ea19fa0ed99244e67b624c72b8580b7e9553043245905be58796a608eb9345"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "wav2vec/config.json",
+    "size": 1596,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "wav2vec/feature_extractor_config.json",
+    "size": 1596,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "wav2vec/model.safetensors",
+    "size": 377607901,
+    "sha256": "8aa76ab2243c81747a1f832954586bc566090c83a0ac167df6f31f0fa917d74a"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "wav2vec/preprocessor_config.json",
+    "size": 159,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "wav2vec/special_tokens_map.json",
+    "size": 85,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "wav2vec/tokenizer_config.json",
+    "size": 163,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "wav2vec/vocab.json",
+    "size": 291,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "roformer/model_bs_roformer_ep_317_sdr_12.9755.ckpt",
+    "size": 639331213,
+    "sha256": "5b84f37e8d444c8cb30c79d77f613a41c05868ff9c9ac6c7049c00aefae115aa"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "roformer/model_bs_roformer_ep_317_sdr_12.9755.yaml",
+    "size": 2273,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "roformer/download_checks.json",
+    "size": 28267,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "pyannote/pyannote_model_wespeaker-voxceleb-resnet34-LM.bin",
+    "size": 26645418,
+    "sha256": "366edf44f4c80889a3eb7a9d7bdf02c4aede3127f7dd15e274dcdb826b143c56"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "pyannote/pytorch_model_segmentation-3.0.bin",
+    "size": 5905440,
+    "sha256": "da85c29829d4002daedd676e012936488234d9255e65e86dfab9bec6b1729298"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "mask/sam_vit_h_4b8939_fp16.safetensors",
+    "size": 1282254462,
+    "sha256": "eadf6d51440ee970e4d28cf8c26deae3089461e9cfb8eca668e3db53247a3fa9"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "mask/matanyone.safetensors",
+    "size": 141199924,
+    "sha256": "07f2a00683e6aec3d62f1cb0b13b7bbe45622d06355443f2861767074a6ec7b1"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "mask/config.json",
+    "size": 2898,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "loras_accelerators/Wan21_I2V_14B_lightx2v_cfg_step_distill_lora_rank64.safetensors",
+    "size": 739472104,
+    "sha256": "8833bd4fd7c8eabebf0bc8ee5cfaf47f4f310ce116928a02c1adf8941dd4b0f1",
+    "target": "loras/wan_i2v/Wan21_I2V_14B_lightx2v_cfg_step_distill_lora_rank64.safetensors"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "index_tts2_gpt_fp16.safetensors",
+    "size": 1742276062,
+    "sha256": "4e4b927d15a5176a3f27fef667df60f6bf726d37479895fa8528cf2822031a21"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "index_tts2/bpe.model",
+    "size": 475997,
+    "sha256": "b2a5ce8090d32da3642cc4f81fdc996376bc6dd3f4cd5e3d165f71120d9f2bc8"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "index_tts2/feat1.pt",
+    "size": 57170,
+    "sha256": "f219cb447d80216ba615666da2ff8d63ac544eee26657f3a7b278692bf7a67c4"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "index_tts2/feat2.pt",
+    "size": 374866,
+    "sha256": "9c4292e96dee535aea9a6206e9a0c856dd578dde9212acdb16dd3ada4d12bf80"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "index_tts2/s2mel.safetensors",
+    "size": 414842320,
+    "sha256": "3d69aae85bff1dc163b4c2d4edbf98375e517b7cf2635992ef3f4df3d6c06c88"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "index_tts2/wav2vec2bert_stats.pt",
+    "size": 9343,
+    "sha256": "c9c176c2b8850ab2e3ba828bbfa969deaf4566ce55db5f2687b8430b87526ad2"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "index_tts2/campplus_cn_common.bin",
+    "size": 28036335,
+    "sha256": "3388cf5fd3493c9ac9c69851d8e7a8badcfb4f3dc631020c4961371646d5ada8"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "index_tts2/index_tts2_semantic_codec.safetensors",
+    "size": 177183712,
+    "sha256": "ec947271175d8cad75ec37e83aa487e27c97a0f72a303393772da5ffa84bddf2"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "qwen0.6bemo4-merge/Modelfile",
+    "size": 360,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "qwen0.6bemo4-merge/added_tokens.json",
+    "size": 707,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "qwen0.6bemo4-merge/chat_template.jinja",
+    "size": 550,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "qwen0.6bemo4-merge/config.json",
+    "size": 727,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "qwen0.6bemo4-merge/generation_config.json",
+    "size": 117,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "qwen0.6bemo4-merge/merges.txt",
+    "size": 1671853,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "qwen0.6bemo4-merge/model.safetensors",
+    "size": 1192135096,
+    "sha256": "11293257a8df593c154a8ecd5fc039f3076de35411e35f06d41b471e136f6641"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "qwen0.6bemo4-merge/special_tokens_map.json",
+    "size": 616,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "qwen0.6bemo4-merge/tokenizer.json",
+    "size": 11422654,
+    "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "qwen0.6bemo4-merge/tokenizer_config.json",
+    "size": 5433,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "qwen0.6bemo4-merge/vocab.json",
+    "size": 2776833,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "bigvgan_v2_22khz_80band_256x/config.json",
+    "size": 1405,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "bigvgan_v2_22khz_80band_256x/bigvgan_generator.pt",
+    "size": 449228171,
+    "sha256": "e95ba25972d3de0628d99cd156e9315a9c018899bf739988959ebe3544080ced"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "w2v-bert-2.0/config.json",
+    "size": 1874,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "w2v-bert-2.0/preprocessor_config.json",
+    "size": 275,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "w2v-bert-2.0/model_fp16.safetensors",
+    "size": 1161076784,
+    "sha256": "f3544a5b45ebcb057527174a8228508d031ee2344feee395a66313a211044439"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "stable_audio3_small_music_bf16.safetensors",
+    "size": 918714064,
+    "sha256": "8a5bb1b5c6f9e54aff7f96d42df18852e7bf5d1da9b2262fd0bed7d2e080b158"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "stable_audio3_same_s_bf16.safetensors",
+    "size": 216518418,
+    "sha256": "01d5b73153f2255b3f13d4ee9679aa3e4506370862f39a1de2d783da01081f30"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "t5gemma-b-b-ul2/t5gemma-b-b-ul2_bf16.safetensors",
+    "size": 1183023032,
+    "sha256": "ef8e92b4b5664c113cbd883f7d9397ecf2b2441f1a1a97454f51bd6ff0fd9876"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "t5gemma-b-b-ul2/config.json",
+    "size": 2540,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "t5gemma-b-b-ul2/special_tokens_map.json",
+    "size": 636,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "t5gemma-b-b-ul2/tokenizer.json",
+    "size": 34362429,
+    "sha256": "7794135caa3ea73918949c902a781cc61dab674a4b59c17d85931c77c1114cbd"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "t5gemma-b-b-ul2/tokenizer.model",
+    "size": 4241003,
+    "sha256": "61a7b147390c64585d6c3543dd6fc636906c9af3865a5548f27f31aee1d4c8e2"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "t5gemma-b-b-ul2/tokenizer_config.json",
+    "size": 46437,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "ace_step_v1_5_transformer_quanto_bf16_int8.safetensors",
+    "size": 2397844186,
+    "sha256": "94d7567d10380bc25bd1d049c7c19937448475b2d15d6ba2017f39a1bfb7c905"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "acestep-5Hz-lm-1.7B/acestep-5Hz-lm-1.7B_quanto_bf16_int8.safetensors",
+    "size": 2300473072,
+    "sha256": "13de21261156d5e16417418332984fb6fab661b41fbe255ce57af90009093916"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "acestep-5Hz-lm-1.7B/config.json",
+    "size": 1385,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "acestep-5Hz-lm-1.7B/tokenizer.json",
+    "size": 24321939,
+    "sha256": "35af56c3f5cb3ea2cc578aa28a8937770981d504f183ac5c8c38baf4bbd4af4d"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "acestep-5Hz-lm-1.7B/tokenizer_config.json",
+    "size": 14072925,
+    "sha256": "6cd70cdd89425971794f5235562edcc608b0629a6c4686ae51a8b8c8b8ba5e95"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "acestep-5Hz-lm-1.7B/special_tokens_map.json",
+    "size": 1824199,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "acestep-5Hz-lm-1.7B/added_tokens.json",
+    "size": 2217787,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "acestep-5Hz-lm-1.7B/merges.txt",
+    "size": 1671853,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "acestep-5Hz-lm-1.7B/vocab.json",
+    "size": 2776833,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "acestep-5Hz-lm-1.7B/chat_template.jinja",
+    "size": 4168,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "ace_step15/ace_step_v1_5_audio_vae_bf16.safetensors",
+    "size": 337431388,
+    "sha256": "da17edb604c40deaf09e9b24974e590d1ca83a374070e5d0884cfa4bed9a99b0"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "ace_step15/silence_latent.pt",
+    "size": 3841215,
+    "sha256": "a778e9dd942f5e8b2c09c55370782d318834432b03dabbcdf70e6ed49ad6358b"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "Qwen3-Embedding-0.6B/model.safetensors",
+    "size": 1191586416,
+    "sha256": "0437e45c94563b09e13cb7a64478fc406947a93cb34a7e05870fc8dcd48e23fd"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "Qwen3-Embedding-0.6B/config.json",
+    "size": 1359,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "Qwen3-Embedding-0.6B/tokenizer.json",
+    "size": 11423705,
+    "sha256": "def76fb086971c7867b829c23a26261e38d9d74e02139253b38aeb9df8b4b50a"
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "Qwen3-Embedding-0.6B/tokenizer_config.json",
+    "size": 5404,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/TTS",
+    "revision": "864a479cbf3e810e1b2c1993b438510750e383b2",
+    "file": "Qwen3-Embedding-0.6B/special_tokens_map.json",
+    "size": 613,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "mmaudio/synchformer_state_dict.pth",
+    "size": 950058171,
+    "sha256": "8aff082f2df5c3bc52759db0c865c7ee772ae6400b860d1b7e90413f2defb67c"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "mmaudio/v1-44.pth",
+    "size": 1221942998,
+    "sha256": "ab6cc15dc31947675f75c950c41f4dcfd0d6d1817555ac871f809ec388e4651a"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "mmaudio/mmaudio_large_44k_v2.pth",
+    "size": 4122474715,
+    "sha256": "a6bf693424fbd4ce0244fff8c412347714d5ac586e28dbeffadfa0f2b647af74"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "DFN5B-CLIP-ViT-H-14-378/open_clip_config.json",
+    "size": 735,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "DFN5B-CLIP-ViT-H-14-378/open_clip_pytorch_model.bin",
+    "size": 3947081637,
+    "sha256": "c07a17b547d461c60a3cce5062b26bf8545b13de602c4c59d8490361eb716033"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "bigvgan_v2_44khz_128band_512x/config.json",
+    "size": 1403,
+    "sha256": null
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "bigvgan_v2_44khz_128band_512x/bigvgan_generator.pt",
+    "size": 489041291,
+    "sha256": "d9fe7ec6bd0b44ed9d66973d5012d8181c1570b01e5c72df51973e241dccd357"
+  }
+]

@@ -1,0 +1,10 @@
+{
+    "mode": "edit_remux",
+    "video_source": "C:/Users/76797/Desktop/chatgpt/aivideo/productions/math/tests/avatar/out/infinitetalk-mom-test(2).mp4",
+    "postprocess_audio": "mmaudio",
+    "postprocess_audio_prompt": "quiet indoor room tone, soft ambient background, gentle fabric rustle, no music, no speech",
+    "postprocess_audio_neg_prompt": "music, singing, speech, loud noise, distortion",
+    "seed": 42,
+    "output_filename": "sfx-mmaudio-infinitetalk-test",
+    "settings_version": 2.79
+}

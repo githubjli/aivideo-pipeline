@@ -1,0 +1,37 @@
+{
+  "wan2.2_vae.safetensors": {
+    "path": "ComfyUI_windows_portable\\ComfyUI\\models\\vae\\wan2.2_vae.safetensors",
+    "size": 1409400960,
+    "sha256": "e40321bd36b9709991dae2530eb4ac303dd168276980d3e9bc4b6e2b75fed156",
+    "repository_commit": "c4f60d30c55a624e35427060fdd217579a6c1d77",
+    "metadata_source": "wan-metadata.json"
+  },
+  "umt5_xxl_fp8_e4m3fn_scaled.safetensors": {
+    "path": "ComfyUI_windows_portable\\ComfyUI\\models\\text_encoders\\umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+    "size": 6735906897,
+    "sha256": "c3355d30191f1f066b26d93fba017ae9809dce6c627dda5f6a66eaa651204f68",
+    "repository_commit": "c4f60d30c55a624e35427060fdd217579a6c1d77",
+    "metadata_source": "wan-metadata.json"
+  },
+  "wan2.2_ti2v_5B_fp16.safetensors": {
+    "path": "ComfyUI_windows_portable\\ComfyUI\\models\\diffusion_models\\wan2.2_ti2v_5B_fp16.safetensors",
+    "size": 9999658848,
+    "sha256": "456f901338bd9eadbded3828b819109a9b68e8a525ca5cf8d0049a69fcfeca1e",
+    "repository_commit": "c4f60d30c55a624e35427060fdd217579a6c1d77",
+    "metadata_source": "wan-metadata.json"
+  },
+  "sd_xl_base_1.0.safetensors": {
+    "path": "ComfyUI_windows_portable\\ComfyUI\\models\\checkpoints\\sd_xl_base_1.0.safetensors",
+    "size": 6938078334,
+    "sha256": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b",
+    "repository_commit": "462165984030d82259a11f4367a4eed129e94a7b",
+    "metadata_source": "sdxl-metadata.json"
+  },
+  "wan2.2_fun_control_5B_bf16.safetensors": {
+    "path": "ComfyUI_windows_portable\\ComfyUI\\models\\diffusion_models\\wan2.2_fun_control_5B_bf16.safetensors",
+    "size": 10003303280,
+    "sha256": "ace4718a7c87ee3e5606a68ab79142c4395e81aece76b8120bc886f0fbbe1d16",
+    "repository_commit": "c4f60d30c55a624e35427060fdd217579a6c1d77",
+    "metadata_source": "wan-metadata.json"
+  }
+}

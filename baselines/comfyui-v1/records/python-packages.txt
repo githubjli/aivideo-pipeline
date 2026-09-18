@@ -1,0 +1,85 @@
+aiohappyeyeballs @ file:///D:/a/ComfyUI/cu130_python_deps/aiohappyeyeballs-2.7.1-py3-none-any.whl#sha256=9243213661e29250eb41368e5daa826fc017156c3b8a11440826b2e3ed376472
+aiohttp @ file:///D:/a/ComfyUI/cu130_python_deps/aiohttp-3.14.3-cp313-cp313-win_amd64.whl#sha256=dff9461ec275f22135650d5ba4b4931a11f3958df7dfbb8db630000d4dee0883
+aiosignal @ file:///D:/a/ComfyUI/cu130_python_deps/aiosignal-1.4.0-py3-none-any.whl#sha256=053243f8b92b990551949e63930a839ff0cf0b0ebbe0597b0f3fb19e1a0fe82e
+alembic @ file:///D:/a/ComfyUI/cu130_python_deps/alembic-1.19.1-py3-none-any.whl#sha256=b39018cb3d9413a19cbd54cf3c02ad33998641f0538eb77413a488a21c3e14be
+annotated-doc @ file:///D:/a/ComfyUI/cu130_python_deps/annotated_doc-0.0.5-py3-none-any.whl#sha256=117bac03a25ede5df5440e855b32d556049ca169ead221505badf432fed4b101
+annotated-types @ file:///D:/a/ComfyUI/cu130_python_deps/annotated_types-0.8.0-py3-none-any.whl#sha256=f072f4d804ea359e4eaf198b1af7a8b0943881a87f31bb764f8bf219bb9419e0
+anyio @ file:///D:/a/ComfyUI/cu130_python_deps/anyio-4.14.2-py3-none-any.whl#sha256=9f505dda5ac9f0c8309b5e8bd445a8c2bf7246f3ce950121e45ea15bc41d1494
+attrs @ file:///D:/a/ComfyUI/cu130_python_deps/attrs-26.1.0-py3-none-any.whl#sha256=c647aa4a12dfbad9333ca4e71fe62ddc36f4e63b2d260a37a8b83d2f043ac309
+av @ file:///D:/a/ComfyUI/cu130_python_deps/av-18.1.0-cp311-abi3-win_amd64.whl#sha256=ea1480b7a8d5405cb5f382b344731bf125fd2c1c6fae3964f6c48595628387ff
+blake3 @ file:///D:/a/ComfyUI/cu130_python_deps/blake3-1.0.9-cp313-cp313-win_amd64.whl#sha256=caded2806d2cbeed638c5e2517ed8b2a94165b3452fda35e72896142d22070e0
+certifi @ file:///D:/a/ComfyUI/cu130_python_deps/certifi-2026.7.22-py3-none-any.whl#sha256=62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775
+cffi @ file:///D:/a/ComfyUI/cu130_python_deps/cffi-2.1.1-cp313-cp313-win_amd64.whl#sha256=1aa5645c30469b09530c4ebca77ebf8f17618293c58f8549cb1a543a50236e7d
+charset-normalizer @ file:///D:/a/ComfyUI/cu130_python_deps/charset_normalizer-3.5.1-cp313-cp313-win_amd64.whl#sha256=aea996a6aba25260827c9ea511d1addfde2da9eb686ac961838509086188b7e6
+click @ file:///D:/a/ComfyUI/cu130_python_deps/click-8.4.2-py3-none-any.whl#sha256=e6f9f66136c816745b9d65817da91d61d957fb16e02e4dcd0552553c5a197b76
+colorama @ file:///D:/a/ComfyUI/cu130_python_deps/colorama-0.4.6-py2.py3-none-any.whl#sha256=4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6
+comfy-aimdo==0.5.3
+comfy-angle @ file:///D:/a/ComfyUI/cu130_python_deps/comfy_angle-0.1.1-py3-none-win_amd64.whl#sha256=beddd2e3b9a67e55f5afaef4da73e3ac704fd88f0cbe6a6f67ce5718d7c7edeb
+comfy-kitchen==0.2.34
+comfyui-embedded-docs==0.5.11
+comfyui-workflow-templates-core==0.3.350
+comfyui-workflow-templates-json==0.1.85
+comfyui-workflow-templates-media-api==0.3.84
+comfyui-workflow-templates-media-assets-01==0.1.46
+comfyui_frontend_package==1.52.7
+comfyui_workflow_templates==0.11.62
+einops @ file:///D:/a/ComfyUI/cu130_python_deps/einops-0.8.2-py3-none-any.whl#sha256=54058201ac7087911181bfec4af6091bb59380360f069276601256a76af08193
+filelock @ file:///D:/a/ComfyUI/cu130_python_deps/filelock-3.32.4-py3-none-any.whl#sha256=22e58ca3b1ae3b98993b762d7338367ae64fe50252bf78d59da3bfebcdf1cedd
+frozenlist @ file:///D:/a/ComfyUI/cu130_python_deps/frozenlist-1.8.0-cp313-cp313-win_amd64.whl#sha256=878be833caa6a3821caf85eb39c5ba92d28e85df26d57afb06b35b2efd937231
+fsspec @ file:///D:/a/ComfyUI/cu130_python_deps/fsspec-2026.7.0-py3-none-any.whl#sha256=b57ddbafedfaef7018c1ecab32aa200a9d7ca26b77965f64e48b70061249d279
+greenlet @ file:///D:/a/ComfyUI/cu130_python_deps/greenlet-3.5.5-cp313-cp313-win_amd64.whl#sha256=95c5b1f4b3a193f8a0c2de4bfdcb48d119f7f1063941f1de1f2168051b3e52dd
+h11 @ file:///D:/a/ComfyUI/cu130_python_deps/h11-0.16.0-py3-none-any.whl#sha256=63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86
+hf-xet @ file:///D:/a/ComfyUI/cu130_python_deps/hf_xet-1.6.0-cp38-abi3-win_amd64.whl#sha256=fb4fadde1b2b70bf4c0c14a6dccbe7194b1c28947fefd5bbe3fed9d940676c3b
+httpcore @ file:///D:/a/ComfyUI/cu130_python_deps/httpcore-1.0.9-py3-none-any.whl#sha256=2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55
+httpx @ file:///D:/a/ComfyUI/cu130_python_deps/httpx-0.28.1-py3-none-any.whl#sha256=d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad
+huggingface_hub @ file:///D:/a/ComfyUI/cu130_python_deps/huggingface_hub-1.28.0-py3-none-any.whl#sha256=58a8bacb03072edfc38067065e9dc24bbb34805410fcd36a1632de0b329660bb
+idna @ file:///D:/a/ComfyUI/cu130_python_deps/idna-3.19-py3-none-any.whl#sha256=815e7be7a7806d54abb586dc943addc79e8b2ee16915059658cbeff4b1b43bf4
+Jinja2 @ file:///D:/a/ComfyUI/cu130_python_deps/jinja2-3.1.6-py3-none-any.whl#sha256=85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67
+kornia @ file:///D:/a/ComfyUI/cu130_python_deps/kornia-0.8.3-py3-none-any.whl#sha256=0b15f5d359aeafd7ff54ea631ed1943a3eb295c4a6dae3f745ddeada25e33289
+kornia_rs @ file:///D:/a/ComfyUI/cu130_python_deps/kornia_rs-0.1.14-cp313-cp313-win_amd64.whl#sha256=4d3312002012fd0189e762b62b24d882e97e4ea9fe3a3834f01d7e17e911201c
+Mako @ file:///D:/a/ComfyUI/cu130_python_deps/mako-1.4.1-py3-none-any.whl#sha256=a359d9a94a541213958742b2698d0a7757bb83551767bc468a74b9905aba9617
+markdown-it-py @ file:///D:/a/ComfyUI/cu130_python_deps/markdown_it_py-4.2.0-py3-none-any.whl#sha256=9f7ebbcd14fe59494226453aed97c1070d83f8d24b6fc3a3bcf9a38092641c4a
+MarkupSafe @ file:///D:/a/ComfyUI/cu130_python_deps/markupsafe-3.0.3-cp313-cp313-win_amd64.whl#sha256=9a1abfdc021a164803f4d485104931fb8f8c1efd55bc6b748d2f5774e78b62c5
+mdurl @ file:///D:/a/ComfyUI/cu130_python_deps/mdurl-0.1.2-py3-none-any.whl#sha256=84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8
+mpmath @ file:///D:/a/ComfyUI/cu130_python_deps/mpmath-1.3.0-py3-none-any.whl#sha256=a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c
+multidict @ file:///D:/a/ComfyUI/cu130_python_deps/multidict-6.7.1-cp313-cp313-win_amd64.whl#sha256=960c83bf01a95b12b08fd54324a4eb1d5b52c88932b5cba5d6e712bb3ed12eb5
+networkx @ file:///D:/a/ComfyUI/cu130_python_deps/networkx-3.6.1-py3-none-any.whl#sha256=d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762
+numpy @ file:///D:/a/ComfyUI/cu130_python_deps/numpy-2.5.2-cp313-cp313-win_amd64.whl#sha256=85aaccb24182c25df891ad0ec333585967e115269d5f1b17f2c9ae005bc96657
+packaging @ file:///D:/a/ComfyUI/cu130_python_deps/packaging-26.3-py3-none-any.whl#sha256=d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c
+pillow @ file:///D:/a/ComfyUI/cu130_python_deps/pillow-12.3.0-cp313-cp313-win_amd64.whl#sha256=1cca606cd25738df4ed873d5ad46bbdb3d83b5cbca291f6b4ff13a4df6b0bbe8
+propcache @ file:///D:/a/ComfyUI/cu130_python_deps/propcache-0.5.2-cp313-cp313-win_amd64.whl#sha256=dfed59d0a5aeb01e242e66ff0300bc4a265a7c05f612d30016f0b60b1017d757
+psutil @ file:///D:/a/ComfyUI/cu130_python_deps/psutil-7.2.2-cp37-abi3-win_amd64.whl#sha256=eb7e81434c8d223ec4a219b5fc1c47d0417b12be7ea866e24fb5ad6e84b3d988
+pycparser @ file:///D:/a/ComfyUI/cu130_python_deps/pycparser-3.0-py3-none-any.whl#sha256=b727414169a36b7d524c1c3e31839a521725078d7b2ff038656844266160a992
+pydantic @ file:///D:/a/ComfyUI/cu130_python_deps/pydantic-2.13.4-py3-none-any.whl#sha256=45a282cde31d808236fd7ea9d919b128653c8b38b393d1c4ab335c62924d9aba
+pydantic-settings @ file:///D:/a/ComfyUI/cu130_python_deps/pydantic_settings-2.15.0-py3-none-any.whl#sha256=0ba092c291c94baceb5eff768aa0d56400a457585bc0175925a5a5510303da42
+pydantic_core @ file:///D:/a/ComfyUI/cu130_python_deps/pydantic_core-2.46.4-cp313-cp313-win_amd64.whl#sha256=6b3ace8194b0e5204818c92802dcdca7fc6d88aabbb799d7c795540d9cd6d292
+pygit2 @ file:///D:/a/ComfyUI/cu130_python_deps/pygit2-1.20.0-cp313-cp313-win_amd64.whl#sha256=451bfe3ec1719419157f49423d1a13a90788df78d2e97fe53efd2c872dbdf8a1
+Pygments @ file:///D:/a/ComfyUI/cu130_python_deps/pygments-2.21.0-py3-none-any.whl#sha256=2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9
+PyOpenGL @ file:///D:/a/ComfyUI/cu130_python_deps/pyopengl-3.1.10-py3-none-any.whl#sha256=794a943daced39300879e4e47bd94525280685f42dbb5a998d336cfff151d74f
+python-dotenv @ file:///D:/a/ComfyUI/cu130_python_deps/python_dotenv-1.2.3-py3-none-any.whl#sha256=904552145e8bfed22162c09dab1c2b9b54fefa7b23ba780f4f26ca0316b0f0d9
+PyYAML @ file:///D:/a/ComfyUI/cu130_python_deps/pyyaml-6.0.3-cp313-cp313-win_amd64.whl#sha256=79005a0d97d5ddabfeeea4cf676af11e647e41d81c9a7722a193022accdb6b7c
+regex @ file:///D:/a/ComfyUI/cu130_python_deps/regex-2026.7.19-cp313-cp313-win_amd64.whl#sha256=d51ffd3427640fa2da6ade574ceba932f210ad095f65fcc450a2b0a0d454868e
+requests @ file:///D:/a/ComfyUI/cu130_python_deps/requests-2.34.2-py3-none-any.whl#sha256=2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0
+rich @ file:///D:/a/ComfyUI/cu130_python_deps/rich-15.0.0-py3-none-any.whl#sha256=33bd4ef74232fb73fe9279a257718407f169c09b78a87ad3d296f548e27de0bb
+safetensors @ file:///D:/a/ComfyUI/cu130_python_deps/safetensors-0.8.0-cp310-abi3-win_amd64.whl#sha256=096ec1a98435df7beb08853bb5aa9081a84f23d0adc67ed1a0a10550f608373f
+scipy @ file:///D:/a/ComfyUI/cu130_python_deps/scipy-1.18.1-cp313-cp313-win_amd64.whl#sha256=559ed65f60c1af5a03f3912605a1b5114f522c7c32fb23c3376ae8f03219fe28
+sentencepiece @ file:///D:/a/ComfyUI/cu130_python_deps/sentencepiece-0.2.2-cp313-cp313-win_amd64.whl#sha256=74f0ee601047c0c12a783088b51be4e6214a62ecd9e02278c477433cd16e0ed9
+setuptools @ file:///D:/a/ComfyUI/cu130_python_deps/setuptools-84.0.0-py3-none-any.whl#sha256=51a52592b3b99e102b609654876bd65f19f999935166d1352678931132b0c670
+shellingham @ file:///D:/a/ComfyUI/cu130_python_deps/shellingham-1.5.4-py2.py3-none-any.whl#sha256=7ecfff8f2fd72616f7481040475a65b2bf8af90a56c89140852d1120324e8686
+simpleeval @ file:///D:/a/ComfyUI/cu130_python_deps/simpleeval-1.0.7-py3-none-any.whl#sha256=97ac271bfd8f2af9e7b9a36ceea67617f26fa873f9d5ae1922f64d4c1442534b
+spandrel @ file:///D:/a/ComfyUI/cu130_python_deps/spandrel-0.4.2-py3-none-any.whl#sha256=6c93e3ecbeb0e548fd2df45a605472b34c1614287c56b51bb33cdef7ae5235b5
+SQLAlchemy @ file:///D:/a/ComfyUI/cu130_python_deps/sqlalchemy-2.0.52-cp313-cp313-win_amd64.whl#sha256=9876b09b9f1ce7398b0ffece585c0a911244c53191187341f6bcae640e133751
+sympy @ file:///D:/a/ComfyUI/cu130_python_deps/sympy-1.14.0-py3-none-any.whl#sha256=e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5
+tokenizers @ file:///D:/a/ComfyUI/cu130_python_deps/tokenizers-0.22.2-cp39-abi3-win_amd64.whl#sha256=c9ea31edff2968b44a88f97d784c2f16dc0729b8b143ed004699ebca91f05c48
+torch @ file:///D:/a/ComfyUI/cu130_python_deps/torch-2.13.0%2Bcu130-cp313-cp313-win_amd64.whl#sha256=cf23236e9deed7d3510d14d9b9592d75d272ef7b35bbfee31a02bea339c73971
+torchaudio @ file:///D:/a/ComfyUI/cu130_python_deps/torchaudio-2.11.0%2Bcu130-cp313-cp313-win_amd64.whl#sha256=ce09a7b144b7982b46c8fe399cf5f91d43dda571e9d6ddba67e928567551f614
+torchsde @ file:///D:/a/ComfyUI/cu130_python_deps/torchsde-0.2.6-py3-none-any.whl#sha256=19bf7ff02eec7e8e46ba1cdb4aa0f9db1c51d492524a16975234b467f7fc463b
+torchvision @ file:///D:/a/ComfyUI/cu130_python_deps/torchvision-0.28.0%2Bcu130-cp313-cp313-win_amd64.whl#sha256=6ac4fadfd4f908f2983a46478d4ef56735b579da57ec215494b9812b6ebd3526
+tqdm @ file:///D:/a/ComfyUI/cu130_python_deps/tqdm-4.70.0-py3-none-any.whl#sha256=7f585706bfddbdebf89daac705b2dfcc16890130727d3197ca62c732b4310953
+trampoline @ file:///D:/a/ComfyUI/cu130_python_deps/trampoline-0.1.2-py3-none-any.whl#sha256=36cc9a4ff9811843d177fc0e0740efbd7da39eadfe6e50c9e2937cbc06d899d9
+transformers @ file:///D:/a/ComfyUI/cu130_python_deps/transformers-5.15.1-py3-none-any.whl#sha256=b7cdf238ff583e3a58dbc7fa34da1aaf091ce063141f65a30538160bd5afe93f
+typer @ file:///D:/a/ComfyUI/cu130_python_deps/typer-0.27.1-py3-none-any.whl#sha256=53150287edd11baeb4e4722c8e394fcdf8181c0ae89485cba8d25c778d5edd56
+typing-inspection @ file:///D:/a/ComfyUI/cu130_python_deps/typing_inspection-0.4.4-py3-none-any.whl#sha256=65b8397ba37ccbce054456aaccddfc91e6e3083c92824df348d96ca832f3f147
+typing_extensions @ file:///D:/a/ComfyUI/cu130_python_deps/typing_extensions-4.16.0-py3-none-any.whl#sha256=481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8
+urllib3 @ file:///D:/a/ComfyUI/cu130_python_deps/urllib3-2.7.0-py3-none-any.whl#sha256=9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897
+yarl @ file:///D:/a/ComfyUI/cu130_python_deps/yarl-1.24.5-cp313-cp313-win_amd64.whl#sha256=2dbe06fc16bc91502bca713704022182e5729861ae00277c3a23354b40929740
