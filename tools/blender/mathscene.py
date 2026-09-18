@@ -190,15 +190,18 @@ def joint_world_positions(armature, rig):
         up = (top - h_head)
         length = up.length if up.length > 1e-6 else 0.2
         up = up.normalized() if up.length > 1e-6 else hmat.to_3x3() @ __import__("mathutils").Vector((0, 1, 0))
-        # bone-local axes: Y along the bone (up); Z is forward for Mixamo heads, -Y/… varies, so use X for sideways only
-        side = (hmat.to_3x3() @ __import__("mathutils").Vector((1, 0, 0))).normalized()
-        fwd = up.cross(side).normalized()
+        # person's right = shoulder line (bone-local X sign differs between rigs); forward = up x right
+        if "r_shoulder" in out and "l_shoulder" in out:
+            right = (out["r_shoulder"] - out["l_shoulder"]).normalized()
+        else:
+            right = (hmat.to_3x3() @ __import__("mathutils").Vector((1, 0, 0))).normalized()
+        fwd = up.cross(right).normalized()
         centre = h_head + up * (0.55 * length)
         out["nose"] = centre + fwd * (0.45 * length)
-        out["r_eye"] = centre + fwd * (0.40 * length) + side * (0.15 * length) + up * (0.12 * length)
-        out["l_eye"] = centre + fwd * (0.40 * length) - side * (0.15 * length) + up * (0.12 * length)
-        out["r_ear"] = centre + side * (0.45 * length) + up * (0.05 * length)
-        out["l_ear"] = centre - side * (0.45 * length) + up * (0.05 * length)
+        out["r_eye"] = centre + fwd * (0.40 * length) + right * (0.15 * length) + up * (0.12 * length)
+        out["l_eye"] = centre + fwd * (0.40 * length) - right * (0.15 * length) + up * (0.12 * length)
+        out["r_ear"] = centre + right * (0.45 * length) + up * (0.05 * length)
+        out["l_ear"] = centre - right * (0.45 * length) + up * (0.05 * length)
     return out
 
 
