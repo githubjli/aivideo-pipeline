@@ -888,5 +888,19 @@
     "file": "bigvgan_v2_44khz_128band_512x/bigvgan_generator.pt",
     "size": 489041291,
     "sha256": "d9fe7ec6bd0b44ed9d66973d5012d8181c1570b01e5c72df51973e241dccd357"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "Wan14BT2VFusioniX_quanto_bf16_int8.safetensors",
+    "size": 14532477217,
+    "sha256": "8a8c73de72e491d61d3eb454795a73f9d2edead29712f84d04ca03af1c9c16d8"
+  },
+  {
+    "repo": "DeepBeepMeep/Wan2.1",
+    "revision": "850ed9ffca04b4d1ba6b95b5cd6167abedd3fc65",
+    "file": "wan2.1_Vace_14B_module_quanto_mbf16_int8.safetensors",
+    "size": 3765098792,
+    "sha256": "587987c73307671d68f8b2c55361ec9a8ce75da008f6dcdfe797476949fb592f"
   }
 ]

@@ -43,6 +43,9 @@ def assets():
     add(wan,'mask','sam_vit_h_4b8939_fp16.safetensors matanyone.safetensors config.json')
     # 4-step accelerator LoRA used by the bundled InfiniteTalk template; Wan2GP looks for it in loras/wan_i2v.
     add(wan,'loras_accelerators','Wan21_I2V_14B_lightx2v_cfg_step_distill_lora_rank64.safetensors',target_dir='loras/wan_i2v')
+    # VACE FusioniX 14B (defaults/vace_14B_fusionix.json): distilled T2V base + VACE control module, INT8.
+    # Text encoder, xlm-roberta, Wan2.1 VAEs are already listed above.
+    add(wan,'','Wan14BT2VFusioniX_quanto_bf16_int8.safetensors wan2.1_Vace_14B_module_quanto_mbf16_int8.safetensors')
     # Audio stack (file lists dumped from each handler's query_model_files + URLs, int8 variants where offered):
     tts='DeepBeepMeep/TTS'
     # Index TTS 2 (voice cloning)

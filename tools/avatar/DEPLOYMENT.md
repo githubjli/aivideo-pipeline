@@ -85,6 +85,15 @@ Windows 未安装 WSL；采用官方 Hunyuan 页面链接的社区低显存运�
 - 已切换：start-avatar.ps1 改为 `--attention sage2`；run-avatar-test.ps1 默认仍是 sdpa，需要时加 `-Attention sage2`。
 - 顺手清理：删除 ckpts/.cache/huggingface/download 下 4 个停滞残留文件（约 1.2 GB）。
 
+## 角色一致性实验：VACE FusioniX 14B（2026-09-18 起）
+
+目的：验证"参考图锁角色 + Blender 线稿锁几何"。Fun Control 5B 的 ref_image 是全局参考，会把参考图白底带进场景；VACE 的 image_refs 是主体参考（People / Objects），并默认去除参考图背景。
+
+- 模型：defaults/vace_14B_fusionix.json = FusioniX 蒸馏 T2V 14B 底模（Wan14BT2VFusioniX_quanto_bf16_int8，13.53 GiB）+ VACE 14B 控制模块（wan2.1_Vace_14B_module_quanto_mbf16_int8，3.51 GiB），文本编码器、xlm-roberta、VAE 复用已有文件。清单已加入两文件并下载（logs/avatar-vace-download.log），总清单 129 文件 117.94 GiB。选 FusioniX 而非原版 VACE 14B：10 步、无 CFG，速度约为原版三分之一；原版需 15–30 步 + CFG。
+- 控制方式：Wan2GP 对 Blender 平光预览自行做预处理。video_prompt_type 字母：E=Canny 边缘、S=Shapes 线稿、D=深度、P=人体姿态、U=原样、V=有控制视频、I=人物/物体参考图、K=风景参考。测试两条：EVI（Canny + 参考图）与 SVI（Shapes + 参考图），其余参数按 FusioniX 模板：832×480、49 帧、10 步、guidance 1、flow_shift 2、种子 42。
+- 配置：productions/math/tests/avatar/vace-fusionix-figure-canny.json、vace-fusionix-figure-shapes.json。
+- 状态：下载中，未验证。
+
 ## 音频栈（2026-09-16 16:50 起）
 
 目标组合：角色配音用 Index TTS 2 克隆声线；无人声背景音乐用 Stable Audio Open 3 Small；歌曲用 ACE-Step 1.5 Turbo（1.7B LM，8 步）；音效按画面用 MMAudio v2。四者都是 Wan2GP 内置模型，只需下载权重，不新增环境。
