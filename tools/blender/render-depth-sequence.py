@@ -22,6 +22,7 @@ parser.add_argument("--height", type=int, default=704)
 parser.add_argument("--fps", type=int, default=24)
 parser.add_argument("--cut", type=float, default=2.0, help="size of the cut-off corner (scene units)")
 parser.add_argument("--figure", action="store_true", help="add a simple articulated mannequin near the cut corner that turns toward the camera and waves")
+parser.add_argument("--focus-figure", action="store_true", help="frame the camera on the mannequin (medium shot) instead of the whole enclosure")
 parser.add_argument("--near", type=float, default=8.0, help="depth mapped to white")
 parser.add_argument("--far", type=float, default=28.0, help="depth mapped to black")
 args = parser.parse_args(argv)
@@ -124,18 +125,28 @@ cam = bpy.context.active_object
 cam.name = "Camera"
 cam.data.lens = 35
 scene.camera = cam
-bpy.ops.object.empty_add(location=(hx - cut - 1.5, hy - 2.0, 0.6))
-target = bpy.context.active_object
-target.name = "CamTarget"
+if args.focus_figure and args.figure:
+    # medium shot: orbit 40 degrees around the mannequin at ~5 units, aim at its chest
+    fx, fy = hx - cut - 1.2, hy - 1.5
+    bpy.ops.object.empty_add(location=(fx, fy, 1.0))
+    target = bpy.context.active_object
+    target.name = "CamTarget"
+    radius, height, sweep, start = 5.0, 1.6, 40, -110
+    center = (fx, fy)
+else:
+    bpy.ops.object.empty_add(location=(hx - cut - 1.5, hy - 2.0, 0.6))
+    target = bpy.context.active_object
+    target.name = "CamTarget"
+    radius, height, sweep, start = 17.0, 6.0, 70, -100
+    center = (0.0, 0.0)
 con = cam.constraints.new(type="TRACK_TO")
 con.target = target
 con.track_axis = "TRACK_NEGATIVE_Z"
 con.up_axis = "UP_Y"
-radius, height = 17.0, 6.0
 for f in range(1, args.frames + 1):
     t = (f - 1) / max(1, args.frames - 1)
-    ang = math.radians(-100 + 70 * t)  # sweep 70 degrees around the corner
-    cam.location = (radius * math.cos(ang), radius * math.sin(ang), height - 1.5 * t)
+    ang = math.radians(start + sweep * t)
+    cam.location = (center[0] + radius * math.cos(ang), center[1] + radius * math.sin(ang), height - (1.5 if not args.focus_figure else 0.3) * t)
     cam.keyframe_insert(data_path="location", frame=f)
 
 # light (irrelevant for depth, keeps preview readable)

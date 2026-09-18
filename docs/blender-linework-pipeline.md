@@ -77,6 +77,22 @@ ComfyUI_windows_portable\python_embeded\python.exe -X utf8 -s run-workflow.py 04
 3. **人偶太小时脸部无线条**，模型只能猜；正式镜头里人物应占画面更大比例，或者用带五官轮廓的模型（Mixamo/Rigify 角色）而不是圆柱人偶。
 4. 素材归档：`productions/math/tests/depth/<镜头>/{scene.blend, preview/, depth/, control/, result/}`，control/ 是送进 ComfyUI 的视频副本，result/ 是生成结果与抽帧条。
 
+## 角色一致性：VACE FusioniX 实验结果（2026-09-18）
+
+| 镜头 | 控制 | 结果 |
+| --- | --- | --- |
+| 全景 fence-v002-figure，人偶很小 | EVI（Canny + 参考图） | 身份很准，但人物被放大到远超人偶轮廓 |
+| 同上 | SVI（Shapes + 参考图） | 几何严格，人偶被画成路人，妈妈在末尾另处冒出 |
+| **中景 fence-v003-figure-medium，人偶占画面约三分之二** | **EVI（Canny + 参考图）** | **身份、位置、转身挥手、围栏几何全部对上，无闪烁，136 秒，峰值显存 9.4 GB** |
+
+结论与规则：
+
+1. 角色镜头走 VACE FusioniX：`video_prompt_type` 用 `EVI`，`image_refs` 放角色正面头肩图，`remove_background_images_ref=1`，10 步、guidance 1、flow_shift 2。
+2. 人偶在画面里要足够大（高度不小于画面一半），否则参考主体无法绑定到人偶轮廓。
+3. 场景全景不放角色时，用 Fun Control 5B 的 Canny 或 VACE 的 Shapes 模式只控几何。
+4. 提示词要把参考角色和动作写明（"the referenced mother character ... turns and waves"），并描述参考图之外的背景。
+5. 复现命令：Blender 加 `--figure --focus-figure` 渲染；`run-avatar-test.ps1 -Settings productions/math/tests/avatar/vace-fusionix-medium-canny.json -Attention sage2`。
+
 ## 跨段、跨镜头一致性的候选模型
 
 | 候选 | 所在环境 | 能力 | 代价 | 建议 |

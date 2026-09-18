@@ -92,7 +92,16 @@ Windows 未安装 WSL；采用官方 Hunyuan 页面链接的社区低显存运�
 - 模型：defaults/vace_14B_fusionix.json = FusioniX 蒸馏 T2V 14B 底模（Wan14BT2VFusioniX_quanto_bf16_int8，13.53 GiB）+ VACE 14B 控制模块（wan2.1_Vace_14B_module_quanto_mbf16_int8，3.51 GiB），文本编码器、xlm-roberta、VAE 复用已有文件。清单已加入两文件并下载（logs/avatar-vace-download.log），总清单 129 文件 117.94 GiB。选 FusioniX 而非原版 VACE 14B：10 步、无 CFG，速度约为原版三分之一；原版需 15–30 步 + CFG。
 - 控制方式：Wan2GP 对 Blender 平光预览自行做预处理。video_prompt_type 字母：E=Canny 边缘、S=Shapes 线稿、D=深度、P=人体姿态、U=原样、V=有控制视频、I=人物/物体参考图、K=风景参考。测试两条：EVI（Canny + 参考图）与 SVI（Shapes + 参考图），其余参数按 FusioniX 模板：832×480、49 帧、10 步、guidance 1、flow_shift 2、种子 42。
 - 配置：productions/math/tests/avatar/vace-fusionix-figure-canny.json、vace-fusionix-figure-shapes.json。
-- 状态：下载中，未验证。
+- **结果（14:18）**：两文件 SHA256 校验通过；两条均一次成功。
+
+| 配置 | 队列耗时 | 采样峰值整卡显存 | 身份 | 几何 |
+| --- | --- | --- | --- | --- |
+| EVI（Canny + 参考图） | 171.8 秒（含首次加载） | 8938 MiB | **很准**：短发、圆眼镜、青色衬衫、米色裤、工具腰包全部对上，是目前所有实验里最接近角色表的一次 | 围栏与相机大致跟随，但人物被放大到远超人偶轮廓，站在剪角后方 |
+| SVI（Shapes + 参考图） | 128.3 秒 | 8938 MiB | 小人偶被画成蓝衣路人，不是妈妈；最后 10 帧妈妈以大尺寸从画面右侧"冒出" | 围栏、剪角、相机环绕严格跟随 |
+
+  结论：VACE 的主体参考能力可用且远强于 Fun Control 5B；参考主体与控制视频里"该主体的位置"之间的绑定取决于轮廓大小，人偶在画面里太小时模型要么放大主体（Canny），要么把主体另放一处（Shapes）。输出与抽帧在 productions/math/tests/depth/fence-v002-figure/result/。
+- **中景复测（14:29，fence-v003-figure-medium）**：Blender 脚本加 `--focus-figure`，相机距人偶 5 单位、环绕 40°，人偶约占画面高度三分之二。EVI + 参考图，队列 136.1 秒，采样峰值 9427 MiB。结果：妈妈的发型、圆眼镜、青色衬衫、米色裤、工具腰包与角色表一致；人物站在人偶所在位置，按人偶动画转身并在后段抬手挥动；围栏柱子和横杆按 Blender 几何排列，背景草地天空由提示词补齐，整段无闪烁。**这是第一次同时做到身份、位置、动作、几何四项可控。** 输出 productions/math/tests/depth/fence-v003-figure-medium/result/。
+- 由此确定角色镜头的基线：Blender 人偶中景（人物占画面不小于二分之一）→ 平光预览 → Wan2GP VACE FusioniX `EVI` + 角色参考图，49 帧约 2 分钟。远景全景仍用 Fun Control 或 VACE 的 Shapes 模式只控几何、不放角色。
 
 ## 音频栈（2026-09-16 16:50 起）
 
