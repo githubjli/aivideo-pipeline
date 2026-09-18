@@ -55,6 +55,12 @@ powershell -ExecutionPolicy Bypass -File tools/avatar/run-avatar-test.ps1 -Setti
 
 测试配置模板（口型三套、配音、垫乐、歌曲、环境音各一份）都在 `productions/math/tests/avatar/`，改台词、参考图和音频路径即可复用。各模型实测参数、对比结果、许可注意事项见 [tools/avatar/DEPLOYMENT.md](tools/avatar/DEPLOYMENT.md)。
 
+## 版本控制
+
+仓库：https://github.com/githubjli/aivideo-pipeline （分支 main，基线标签 comfyui-v1）。只提交脚本、工作流、清单和文档；程序、模型、下载、日志、输出和生成的音视频都在 .gitignore 里，按 [baselines/comfyui-v1/BASELINE.md](baselines/comfyui-v1/BASELINE.md) 重建。market 目录的分析文档只留本地。
+
+日常提交在项目目录终端执行 `git add -A`、`git commit -m "..."`、`git push`；Git for Windows 已安装并通过浏览器登录，不需要再输凭据。
+
 ## 文件与维护
 
 - 主程序和模型：`ComfyUI_windows_portable/ComfyUI/`
