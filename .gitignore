@@ -50,3 +50,6 @@ productions/**/pose/
 !productions/**/*.md
 !productions/math/shared/**/*.png
 !productions/math/tests/avatar/mom-ref-front.png
+
+# --- local Claude Code session state ---
+.claude/
