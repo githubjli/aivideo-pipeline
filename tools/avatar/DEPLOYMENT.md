@@ -1,33 +1,6 @@
-# 口型模型部署记录
+# 口型与音频运行器（Wan2GP）部署与实验记录
 
-日期：2026-09-16。状态：**三套口型模型（InfiniteTalk 16:23、Hunyuan Avatar 17:48、LongCat Avatar 1.5 19:04）与音频四件套（Index TTS 2、Stable Audio 3 Small、ACE-Step 1.5、MMAudio v2）全部出片，127 个权重文件 100.90 GiB 全部校验通过。** 观感、口型对齐、音色等主观项待人工验收。
-
-## 三套口型模型横向对比（同一参考图、同一段 4.38 秒中文配音、种子 42、sage2、profile 4）
-
-| 模型 | 配置 | 输出 | 队列耗时 | 采样峰值整卡显存 | 抽帧初看 |
-| --- | --- | --- | --- | --- | --- |
-| InfiniteTalk 14B INT8 + lightx2v 4 步 LoRA | 480×640、113 帧、两窗 | 480×640、4.52 秒、配音完整 | 2 分 10 秒 | 8034 MiB | 身份稳定，表情克制，嘴开合适中 |
-| Hunyuan Avatar 13B INT8 | 预算 832×480、129 帧、30 步 | 544×736、5.16 秒、配音完整 | 14 分 11 秒 | 15221 MiB | 身份稳定，表情最丰富，露齿笑多 |
-| LongCat Avatar 1.5 13.6B INT8 + DMD 蒸馏 8 步 | 预算 832×480、113 帧、8 步 | 544×736、4.52 秒、配音完整 | 3 分 05 秒 | 10945 MiB | 身份稳定，眉眼表情变化大，有惊讶/皱眉帧 |
-
-初步判断：速度与质量的折中最好的是 InfiniteTalk（有蒸馏 LoRA，两分钟一条，支持长视频滑窗）；LongCat 1.5 速度接近但默认 93 帧短于配音，需按音频时长设帧数（已把测试配置改为 113 帧待复测）；Hunyuan 表情最活但慢 6 倍且显存最高，适合短特写镜头。最终取舍要看人工验收的口型对齐和"数学妈妈"角色气质。
-
-## LongCat Avatar 1.5 验证结果｜2026-09-16 19:04
-
-输出 `productions/math/tests/avatar/out/longcat-avatar-mom-test.mp4`，抽帧条 out/frames/longcat-strip.png。配置 longcat-avatar-mom-test.json：预算 832×480、93 帧、8 步 distill、guidance 1.0、种子 42。输出 544×736、25fps、93 帧 3.72 秒，AAC；队列 2 分 37 秒，去噪 8 步约 14 秒/步，采样峰值 10907 MiB。蒸馏 LoRA 经 loras/longcat_avatar_v1_5/dmd_lora.safetensors 硬链接正常加载，未触发联网下载。问题：93 帧只覆盖 3.72 秒，配音 4.38 秒被截断。**复测（19:10，113 帧）**：输出 longcat-avatar-mom-test(2).mp4，544×736、113 帧 4.52 秒，配音完整；队列 3 分 05 秒，采样峰值 10945 MiB；抽帧条 out/frames/longcat-113-strip.png。结论：LongCat 1.5 用 113 帧覆盖 4.4 秒配音，速度仍与 InfiniteTalk 同一量级。
-
-## Hunyuan Avatar 验证结果｜2026-09-16 17:48
-
-输出 `productions/math/tests/avatar/out/hunyuan-avatar-mom-test.mp4`，抽帧条 out/frames/hunyuan-strip.png。
-
-| 项目 | 实测 |
-| --- | --- |
-| 配置 | hunyuan-avatar-mom-test.json：预算 832×480、129 帧、30 步、guidance 7.5、种子 42、sage2、profile 4 |
-| 输出 | H.264 544×736（程序按参考图比例在同像素预算内自动定尺寸）、25fps、129 帧、5.16 秒；AAC 22050Hz，配音完整 |
-| 耗时 | 队列 14 分 11 秒；去噪 30 步约 13 分 24 秒（约 27 秒/步），VAE 解码分块约 30 秒 |
-| 显存 | 采样峰值整卡 15221 MiB |
-
-抽帧初看：身份、眼镜、衣着稳定，表情比 InfiniteTalk 更丰富、嘴张得更大、露齿笑较多；是否过度夸张需人工判断。与 InfiniteTalk 对比：同一段 4.4 秒配音，InfiniteTalk 用 4 步蒸馏 LoRA 约 2 分钟，Hunyuan 30 步约 14 分钟，Hunyuan 没有官方蒸馏加速版。
+状态（2026-09-20 整理）：**三套口型模型、音频四件套、VACE FusioniX 角色一致性、VACE + Multitalk 对话全部跑通并有样片；130 个权重文件 120.33 GiB 全部 SHA256 校验通过。** 主观质量（口型对齐、音色、表情）待人工验收。本文按主题重排，各节保留原始时间戳；阅读顺序与全项目文档地图见 docs/README.md。
 
 ## 架构决策
 
@@ -44,22 +17,6 @@ Windows 未安装 WSL；采用官方 Hunyuan 页面链接的社区低显存运�
 - Web UI：已在后台启动（14:49，进程 python.exe，日志 logs/avatar-server.log），http://127.0.0.1:7861 返回 200；启动时自动下载了 ffmpeg 9.0.1 到 Wan2GP/ffmpeg_bins。尚未在浏览器里做任何模型加载或生成。
 - 模型下载：进程仍在运行（download-models.py --download，14:28 启动）。15:08 时 4 个文件已校验（3.57 GiB），分块缓存 10.71 GiB；InfiniteTalk 音频模块、三个 Wan VAE 已完成，i2v 480p 底模约 44%，umt5 文本编码器约 56%。实测吞吐约 6.5 MB/s，剩余约 59 GiB，预计还需 2.5–3 小时。
 - 视频生成：三套均未验证。测试素材只有配音 productions/math/tests/avatar/mom-test-zh.wav 与角色参考图 productions/math/shared/characters/duo/v001/characters-v001.png。
-
-## InfiniteTalk 验证结果｜2026-09-16 16:23
-
-首条样片已生成并可解码：`productions/math/tests/avatar/out/infinitetalk-mom-test(2).mp4`（同目录不带 (2) 的文件是第一个滑窗的中间产物，由 keep_intermediate_sliding_windows=1 产生）。
-
-| 项目 | 实测 |
-| --- | --- |
-| 配置 | infinitetalk-mom-test.json：480×640、113 帧、两个 81 帧滑窗、4 步、种子 42、lightx2v 加速 LoRA、sdpa、profile 4 |
-| 输出 | H.264 480×640、25fps、113 帧、4.52 秒；AAC 16kHz 单声道 4.48 秒，配音完整 |
-| 耗时 | 队列总计 2 分 18 秒（含模型加载）；第一窗 4 步约 68 秒，第二窗约 32 秒，VAE 解码每窗约 37 秒 |
-| 显存 | 本次未采样（见下），下次运行由 run-avatar-test.ps1 记录 |
-| 命令 | `wgp.py --process <json> --output-dir <dir> --attention sdpa --profile 4`，stdout/stderr 重定向到文件 |
-
-前两次运行在“Encoding Prompt”后进程无提示退出，原因已查明：run-avatar-test.ps1 用 `2>&1` 把 Python 的 stderr 接进 PowerShell 5.1 管道，第一条 tqdm 进度条（写在 stderr）在 ErrorActionPreference=Stop 下被当成终止错误，管道中断把 Python 一起杀掉。不是模型或 CUDA 问题。脚本已改为 Start-Process 重定向到文件后再汇总日志。
-
-以上只证明“程序跑通、音视频完整”。抽帧初看（out/frames/infinitetalk-strip.png，每 16 帧一张）：人物身份、发型、眼镜、衣着与参考图一致，嘴部有明显开合与表情变化，有一帧闭眼属正常眨眼；嘴形是否与中文音节对齐需要人工看片后另行记录。
 
 ## 15:30 起的处理记录
 
@@ -85,23 +42,48 @@ Windows 未安装 WSL；采用官方 Hunyuan 页面链接的社区低显存运�
 - 已切换：start-avatar.ps1 改为 `--attention sage2`；run-avatar-test.ps1 默认仍是 sdpa，需要时加 `-Attention sage2`。
 - 顺手清理：删除 ckpts/.cache/huggingface/download 下 4 个停滞残留文件（约 1.2 GB）。
 
-## 角色一致性实验：VACE FusioniX 14B（2026-09-18 起）
+## InfiniteTalk 验证结果｜2026-09-16 16:23
 
-目的：验证"参考图锁角色 + Blender 线稿锁几何"。Fun Control 5B 的 ref_image 是全局参考，会把参考图白底带进场景；VACE 的 image_refs 是主体参考（People / Objects），并默认去除参考图背景。
+首条样片已生成并可解码：`productions/math/tests/avatar/out/infinitetalk-mom-test(2).mp4`（同目录不带 (2) 的文件是第一个滑窗的中间产物，由 keep_intermediate_sliding_windows=1 产生）。
 
-- 模型：defaults/vace_14B_fusionix.json = FusioniX 蒸馏 T2V 14B 底模（Wan14BT2VFusioniX_quanto_bf16_int8，13.53 GiB）+ VACE 14B 控制模块（wan2.1_Vace_14B_module_quanto_mbf16_int8，3.51 GiB），文本编码器、xlm-roberta、VAE 复用已有文件。清单已加入两文件并下载（logs/avatar-vace-download.log），总清单 129 文件 117.94 GiB。选 FusioniX 而非原版 VACE 14B：10 步、无 CFG，速度约为原版三分之一；原版需 15–30 步 + CFG。
-- 控制方式：Wan2GP 对 Blender 平光预览自行做预处理。video_prompt_type 字母：E=Canny 边缘、S=Shapes 线稿、D=深度、P=人体姿态、U=原样、V=有控制视频、I=人物/物体参考图、K=风景参考。测试两条：EVI（Canny + 参考图）与 SVI（Shapes + 参考图），其余参数按 FusioniX 模板：832×480、49 帧、10 步、guidance 1、flow_shift 2、种子 42。
-- 配置：productions/math/tests/avatar/vace-fusionix-figure-canny.json、vace-fusionix-figure-shapes.json。
-- **结果（14:18）**：两文件 SHA256 校验通过；两条均一次成功。
+| 项目 | 实测 |
+| --- | --- |
+| 配置 | infinitetalk-mom-test.json：480×640、113 帧、两个 81 帧滑窗、4 步、种子 42、lightx2v 加速 LoRA、sdpa、profile 4 |
+| 输出 | H.264 480×640、25fps、113 帧、4.52 秒；AAC 16kHz 单声道 4.48 秒，配音完整 |
+| 耗时 | 队列总计 2 分 18 秒（含模型加载）；第一窗 4 步约 68 秒，第二窗约 32 秒，VAE 解码每窗约 37 秒 |
+| 显存 | 本次未采样（见下），下次运行由 run-avatar-test.ps1 记录 |
+| 命令 | `wgp.py --process <json> --output-dir <dir> --attention sdpa --profile 4`，stdout/stderr 重定向到文件 |
 
-| 配置 | 队列耗时 | 采样峰值整卡显存 | 身份 | 几何 |
-| --- | --- | --- | --- | --- |
-| EVI（Canny + 参考图） | 171.8 秒（含首次加载） | 8938 MiB | **很准**：短发、圆眼镜、青色衬衫、米色裤、工具腰包全部对上，是目前所有实验里最接近角色表的一次 | 围栏与相机大致跟随，但人物被放大到远超人偶轮廓，站在剪角后方 |
-| SVI（Shapes + 参考图） | 128.3 秒 | 8938 MiB | 小人偶被画成蓝衣路人，不是妈妈；最后 10 帧妈妈以大尺寸从画面右侧"冒出" | 围栏、剪角、相机环绕严格跟随 |
+前两次运行在“Encoding Prompt”后进程无提示退出，原因已查明：run-avatar-test.ps1 用 `2>&1` 把 Python 的 stderr 接进 PowerShell 5.1 管道，第一条 tqdm 进度条（写在 stderr）在 ErrorActionPreference=Stop 下被当成终止错误，管道中断把 Python 一起杀掉。不是模型或 CUDA 问题。脚本已改为 Start-Process 重定向到文件后再汇总日志。
 
-  结论：VACE 的主体参考能力可用且远强于 Fun Control 5B；参考主体与控制视频里"该主体的位置"之间的绑定取决于轮廓大小，人偶在画面里太小时模型要么放大主体（Canny），要么把主体另放一处（Shapes）。输出与抽帧在 productions/math/tests/depth/fence-v002-figure/result/。
-- **中景复测（14:29，fence-v003-figure-medium）**：Blender 脚本加 `--focus-figure`，相机距人偶 5 单位、环绕 40°，人偶约占画面高度三分之二。EVI + 参考图，队列 136.1 秒，采样峰值 9427 MiB。结果：妈妈的发型、圆眼镜、青色衬衫、米色裤、工具腰包与角色表一致；人物站在人偶所在位置，按人偶动画转身并在后段抬手挥动；围栏柱子和横杆按 Blender 几何排列，背景草地天空由提示词补齐，整段无闪烁。**这是第一次同时做到身份、位置、动作、几何四项可控。** 输出 productions/math/tests/depth/fence-v003-figure-medium/result/。
-- 由此确定角色镜头的基线：Blender 人偶中景（人物占画面不小于二分之一）→ 平光预览 → Wan2GP VACE FusioniX `EVI` + 角色参考图，49 帧约 2 分钟。远景全景仍用 Fun Control 或 VACE 的 Shapes 模式只控几何、不放角色。
+以上只证明“程序跑通、音视频完整”。抽帧初看（out/frames/infinitetalk-strip.png，每 16 帧一张）：人物身份、发型、眼镜、衣着与参考图一致，嘴部有明显开合与表情变化，有一帧闭眼属正常眨眼；嘴形是否与中文音节对齐需要人工看片后另行记录。
+
+## Hunyuan Avatar 验证结果｜2026-09-16 17:48
+
+输出 `productions/math/tests/avatar/out/hunyuan-avatar-mom-test.mp4`，抽帧条 out/frames/hunyuan-strip.png。
+
+| 项目 | 实测 |
+| --- | --- |
+| 配置 | hunyuan-avatar-mom-test.json：预算 832×480、129 帧、30 步、guidance 7.5、种子 42、sage2、profile 4 |
+| 输出 | H.264 544×736（程序按参考图比例在同像素预算内自动定尺寸）、25fps、129 帧、5.16 秒；AAC 22050Hz，配音完整 |
+| 耗时 | 队列 14 分 11 秒；去噪 30 步约 13 分 24 秒（约 27 秒/步），VAE 解码分块约 30 秒 |
+| 显存 | 采样峰值整卡 15221 MiB |
+
+抽帧初看：身份、眼镜、衣着稳定，表情比 InfiniteTalk 更丰富、嘴张得更大、露齿笑较多；是否过度夸张需人工判断。与 InfiniteTalk 对比：同一段 4.4 秒配音，InfiniteTalk 用 4 步蒸馏 LoRA 约 2 分钟，Hunyuan 30 步约 14 分钟，Hunyuan 没有官方蒸馏加速版。
+
+## LongCat Avatar 1.5 验证结果｜2026-09-16 19:04
+
+输出 `productions/math/tests/avatar/out/longcat-avatar-mom-test.mp4`，抽帧条 out/frames/longcat-strip.png。配置 longcat-avatar-mom-test.json：预算 832×480、93 帧、8 步 distill、guidance 1.0、种子 42。输出 544×736、25fps、93 帧 3.72 秒，AAC；队列 2 分 37 秒，去噪 8 步约 14 秒/步，采样峰值 10907 MiB。蒸馏 LoRA 经 loras/longcat_avatar_v1_5/dmd_lora.safetensors 硬链接正常加载，未触发联网下载。问题：93 帧只覆盖 3.72 秒，配音 4.38 秒被截断。**复测（19:10，113 帧）**：输出 longcat-avatar-mom-test(2).mp4，544×736、113 帧 4.52 秒，配音完整；队列 3 分 05 秒，采样峰值 10945 MiB；抽帧条 out/frames/longcat-113-strip.png。结论：LongCat 1.5 用 113 帧覆盖 4.4 秒配音，速度仍与 InfiniteTalk 同一量级。
+
+## 三套口型模型横向对比（同一参考图、同一段 4.38 秒中文配音、种子 42、sage2、profile 4）
+
+| 模型 | 配置 | 输出 | 队列耗时 | 采样峰值整卡显存 | 抽帧初看 |
+| --- | --- | --- | --- | --- | --- |
+| InfiniteTalk 14B INT8 + lightx2v 4 步 LoRA | 480×640、113 帧、两窗 | 480×640、4.52 秒、配音完整 | 2 分 10 秒 | 8034 MiB | 身份稳定，表情克制，嘴开合适中 |
+| Hunyuan Avatar 13B INT8 | 预算 832×480、129 帧、30 步 | 544×736、5.16 秒、配音完整 | 14 分 11 秒 | 15221 MiB | 身份稳定，表情最丰富，露齿笑多 |
+| LongCat Avatar 1.5 13.6B INT8 + DMD 蒸馏 8 步 | 预算 832×480、113 帧、8 步 | 544×736、4.52 秒、配音完整 | 3 分 05 秒 | 10945 MiB | 身份稳定，眉眼表情变化大，有惊讶/皱眉帧 |
+
+初步判断：速度与质量的折中最好的是 InfiniteTalk（有蒸馏 LoRA，两分钟一条，支持长视频滑窗）；LongCat 1.5 速度接近但默认 93 帧短于配音，需按音频时长设帧数（已把测试配置改为 113 帧待复测）；Hunyuan 表情最活但慢 6 倍且显存最高，适合短特写镜头。最终取舍要看人工验收的口型对齐和"数学妈妈"角色气质。
 
 ## 音频栈（2026-09-16 16:50 起）
 
@@ -120,6 +102,24 @@ Windows 未安装 WSL；采用官方 Hunyuan 页面链接的社区低显存运�
 - 测试队列脚本 tools/avatar/run-test-queue.ps1：把多份配置按顺序在 GPU 上逐个执行（绝不并行），日志 logs/avatar-test-queue.log；用 -File 启动时多份配置用逗号连成一个参数。
 - 测试配置已写好并通过 `--dry-run`（productions/math/tests/avatar/）：tts-indextts2-mom-test.json（样音暂用系统合成的 mom-test-zh.wav，只验证流程，正式声线需真人样音 10–30 秒）、music-stableaudio3-bgm-test.json（30 秒、8 步）、song-acestep15-test.json（中文歌词 60 秒、8 步、LM 中等思考模式）、sfx-mmaudio-infinitetalk-test.json（mode=edit_remux，对现有样片配环境音）。这些是安装验证配置；英语生产基线改为 E01 的 IndexTTS2 对白、ACE-Step 104 BPM/C 大调/约 37 秒器乐循环、Stable Audio 短音效，以及只供内部比较的 MMAudio 拟音。运行方式同口型测试：`run-avatar-test.ps1 -Settings <json>`。
 
+## 角色一致性实验：VACE FusioniX 14B（2026-09-18 起）
+
+目的：验证"参考图锁角色 + Blender 线稿锁几何"。Fun Control 5B 的 ref_image 是全局参考，会把参考图白底带进场景；VACE 的 image_refs 是主体参考（People / Objects），并默认去除参考图背景。
+
+- 模型：defaults/vace_14B_fusionix.json = FusioniX 蒸馏 T2V 14B 底模（Wan14BT2VFusioniX_quanto_bf16_int8，13.53 GiB）+ VACE 14B 控制模块（wan2.1_Vace_14B_module_quanto_mbf16_int8，3.51 GiB），文本编码器、xlm-roberta、VAE 复用已有文件。清单已加入两文件并下载（logs/avatar-vace-download.log），总清单 129 文件 117.94 GiB。选 FusioniX 而非原版 VACE 14B：10 步、无 CFG，速度约为原版三分之一；原版需 15–30 步 + CFG。
+- 控制方式：Wan2GP 对 Blender 平光预览自行做预处理。video_prompt_type 字母：E=Canny 边缘、S=Shapes 线稿、D=深度、P=人体姿态、U=原样、V=有控制视频、I=人物/物体参考图、K=风景参考。测试两条：EVI（Canny + 参考图）与 SVI（Shapes + 参考图），其余参数按 FusioniX 模板：832×480、49 帧、10 步、guidance 1、flow_shift 2、种子 42。
+- 配置：productions/math/tests/avatar/vace-fusionix-figure-canny.json、vace-fusionix-figure-shapes.json。
+- **结果（14:18）**：两文件 SHA256 校验通过；两条均一次成功。
+
+| 配置 | 队列耗时 | 采样峰值整卡显存 | 身份 | 几何 |
+| --- | --- | --- | --- | --- |
+| EVI（Canny + 参考图） | 171.8 秒（含首次加载） | 8938 MiB | **很准**：短发、圆眼镜、青色衬衫、米色裤、工具腰包全部对上，是目前所有实验里最接近角色表的一次 | 围栏与相机大致跟随，但人物被放大到远超人偶轮廓，站在剪角后方 |
+| SVI（Shapes + 参考图） | 128.3 秒 | 8938 MiB | 小人偶被画成蓝衣路人，不是妈妈；最后 10 帧妈妈以大尺寸从画面右侧"冒出" | 围栏、剪角、相机环绕严格跟随 |
+
+  结论：VACE 的主体参考能力可用且远强于 Fun Control 5B；参考主体与控制视频里"该主体的位置"之间的绑定取决于轮廓大小，人偶在画面里太小时模型要么放大主体（Canny），要么把主体另放一处（Shapes）。输出与抽帧在 productions/math/tests/depth/fence-v002-figure/result/。
+- **中景复测（14:29，fence-v003-figure-medium）**：Blender 脚本加 `--focus-figure`，相机距人偶 5 单位、环绕 40°，人偶约占画面高度三分之二。EVI + 参考图，队列 136.1 秒，采样峰值 9427 MiB。结果：妈妈的发型、圆眼镜、青色衬衫、米色裤、工具腰包与角色表一致；人物站在人偶所在位置，按人偶动画转身并在后段抬手挥动；围栏柱子和横杆按 Blender 几何排列，背景草地天空由提示词补齐，整段无闪烁。**这是第一次同时做到身份、位置、动作、几何四项可控。** 输出 productions/math/tests/depth/fence-v003-figure-medium/result/。
+- 由此确定角色镜头的基线：Blender 人偶中景（人物占画面不小于二分之一）→ 平光预览 → Wan2GP VACE FusioniX `EVI` + 角色参考图，49 帧约 2 分钟。远景全景仍用 Fun Control 或 VACE 的 Shapes 模式只控几何、不放角色。
+
 ## 本次核查发现的问题（15:10 记录，处理情况见上节）
 
 1. 下载清单缺共享文件。Wan2GP 每次加载任何模型前都会先检查一组共享资产（wgp.py `query_core_shared_model_files` 与 MatAnyone 定义）：pose、scribble、flow、depth、wav2vec、roformer、pyannote、mask 等目录，共 21 个文件、4.09 GiB，不在 model-manifest.json 中。缺失时会在首次加载模型时用 huggingface_hub 直接下载，而本机这条路径此前会停滞。需要把这些文件加入清单用同一分块下载器补齐，否则首次生成会卡在下载。
@@ -127,15 +127,6 @@ Windows 未安装 WSL；采用官方 Hunyuan 页面链接的社区低显存运�
 3. 配置文件被服务覆盖。上次对 wgp_config.json 写入的 transformer_types、last_model_type、deepy_enabled=0、enhancer_enabled=0 已丢失：服务在 14:52 保存工作区时用运行中的配置重写了文件，当前 transformer_types 为空、deepy_enabled=1、enhancer_enabled=5。要生效必须先停服务再改，或者直接在界面里选模型。原始默认配置保留在 wgp_config.initial.json。
 4. 残留缓存。ckpts/.cache/huggingface/download 下有两个 14:27 的 .incomplete 文件（约 1.2 GB）和两个 .lock，是改用分块下载前 huggingface_hub 停滞留下的，可在下载全部完成后删除。
 5. ComfyUI 仍在运行（11:27 启动，占用约 3.2 GB 显存、2.6 GB 内存）。做口型生成验收前按原则先停掉，避免和 14B 模型争显存。
-
-## 目录和运行
-
-- 程序：tools/avatar/Wan2GP
-- 模型：tools/avatar/Wan2GP/ckpts
-- 恢复下载：用含 huggingface_hub 和 requests 的 Python 运行 tools/avatar/download-models.py --download；本次使用现有 ComfyUI Python 执行下载，不修改其依赖。
-- 启动：项目根目录 start-avatar.bat 或 start-avatar.ps1。
-- 停止前台运行：在启动窗口按 Ctrl+C。
-- 同一时刻只执行一套 GPU 生成任务，生成前释放 ComfyUI 的已加载模型。
 
 ## 试错
 
@@ -146,6 +137,16 @@ Windows 未安装 WSL；采用官方 Hunyuan 页面链接的社区低显存运�
 5. 首次启动要求配置含完整默认字段：先让程序生成标准配置（备份为 wgp_config.initial.json）再改。改动在服务运行中被覆盖，见上节第 3 条；后续改配置一律先停服务。
 6. 清单核对方法：以各处理器 `query_model_files` 与 defaults/*.json 中 URLs、modules 为准逐项比对，发现共享资产与 LoRA 路径两处遗漏（上节第 1、2 条）。
 
+## 目录和运行
+
+- 程序：tools/avatar/Wan2GP
+- 模型：tools/avatar/Wan2GP/ckpts
+- 恢复下载：用含 huggingface_hub 和 requests 的 Python 运行 tools/avatar/download-models.py --download；本次使用现有 ComfyUI Python 执行下载，不修改其依赖。
+- 启动：项目根目录 start-avatar.bat 或 start-avatar.ps1。
+- 停止前台运行：在启动窗口按 Ctrl+C。
+- 同一时刻只执行一套 GPU 生成任务，生成前释放 ComfyUI 的已加载模型。
+
 ## 待验收
 
 依赖导入、UI 可达、三套完整模型清单校验、每套至少一个可播放短片、峰值内存/显存与耗时。数学角色的口型观感与身份一致性单独验收，不由程序成功退出代替。
+

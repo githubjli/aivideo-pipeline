@@ -1,12 +1,12 @@
 # 本地 AI 图片与视频生成部署计划
 
-更新日期：2026-09-16（北京时间）
+更新日期：2026-09-20（北京时间；首版 2026-09-16）
 
 ## 目标与当前状态
 
 在本机部署 ComfyUI，先用 SDXL 跑通图片生成，再用 Wan 2.2 TI2V-5B 跑通文生视频和图生视频。先验证基础工作流，再考虑增加模型、插件和加速配置。
 
-当前阶段：基础部署与生成验证已完成。ComfyUI v0.36.0、SDXL、Wan 2.2 TI2V-5B 均已安装；两次图片生成、一次文生视频、一次图生视频成功。服务保留运行，地址为 http://127.0.0.1:8188 。使用说明见 README.md。
+当前阶段：ComfyUI 基线（SDXL、Wan 2.2 TI2V-5B）与 Blender 线稿控制视频（Wan2.2 Fun Control 5B）均已验证并冻结为 baselines/comfyui-v1；口型、音频、角色一致性在独立的 Wan2GP 运行器中完成，见 tools/avatar/DEPLOYMENT.md。全项目文档地图见 docs/README.md，阶段总结见 docs/phase-1-summary.md。服务不常驻运行，需要时用 start-comfyui.bat 启动，地址 http://127.0.0.1:8188 。
 
 项目目录：`C:\Users\76797\Desktop\chatgpt\aivideo`
 
@@ -169,27 +169,6 @@ aivideo/
 
 - Wan 文生视频成功：1280×704、49 帧、24fps、20 步，脚本端耗时 70.31 秒；输出 outputs/wan/t2v_baseline_00001_.mp4。开始相同参数的图生视频验证。
 
-## Blender + 深度图控制视频（2026-09-17 起）
-
-目标：Blender 出精确几何与相机运动，ComfyUI 用 Wan2.2 Fun Control 5B 按深度序列生成画面，解决"围栏、剪角"这类形状必须准确的镜头。角色一致性不由这条路线负责。
-
-- Blender 4.2.23 LTS 便携版：官方 download.blender.org 下载，SHA256 `82e79147…d910cb` 与官方 blender-4.2.23.sha256 一致，解压到 `tools/blender/blender-4.2.23-windows-x64/`，不写注册表。无头运行验证通过，Cycles 可见 RTX 4090 D（OptiX）与 i9-14900K。
-- 场景脚本 `tools/blender/render-depth-sequence.py`：程序化搭建 12×8 围栏（每 2 单位一根柱、两道横杆），右上角按 `--cut` 斜切，相机绕剪角处 70° 环绕并缓慢下降；合成器把 Z 通道按 8–28 单位映射为近白远黑的 8 位灰度。首次渲染 49 帧 1280×704 用时 26 秒（EEVEE，GPU）。输出 `productions/math/tests/depth/fence-v001/`（depth/、preview/、scene.blend、preview.mp4）。
-- 控制视频：`ComfyUI/input/fence-v001-depth.mp4`（H.264 无损级 crf 10，24fps，49 帧）。
-- 模型：`wan2.2_fun_control_5B_bf16.safetensors`（10.00 GB，Comfy-Org 重打包仓库同一提交 c4f60d30，SHA256 已在 downloads/wan-metadata.json），经 HF Mirror 分段续传，verify-models.py 已加入该文件。文本编码器与 VAE 复用现有 umt5 fp8 与 wan2.2_vae。
-- 工作流 `04-wan-fun-control-depth`：由官方模板 video_wan2_2_5B_fun_control 派生，Canny 与参考图节点旁路，直接把深度视频送入 Wan22FunControlToVideo；1280×704、49 帧、20 步、cfg 5、种子 42。ComfyUI 核心自带该节点，未装任何第三方节点。
-- **基线 v1 结果（09-17 17:08）**：权重 SHA256 校验通过；工作流一次成功，脚本端 67.4 秒，采样峰值整卡显存 21689 MiB，输出 `outputs/wan/fun_control_depth_baseline_00001_.mp4`（1280×704、49 帧、2.04 秒）。抽帧（productions/math/tests/depth/fence-v001/result/）：画风符合提示词（卡通木栅栏、草地、木箱），但几何跟随弱：围栏只剩前方一段与右侧一角，没有闭合的矩形和斜切角，相机 70° 环绕几乎没有体现。判断：深度图里细柱细杆占比太小、地面渐变主导；且 5B 控制力有限。下一步：改用预览渲染的 Canny 线稿做控制（结构线条更强）、收窄深度映射范围，两者各跑一次对比。
-- **三种控制信号对比（09-17 17:14，同一提示词、种子 42、20 步、1280×704×49）**：
-
-| 工作流 | 控制信号 | 脚本端耗时 | 几何跟随 | 输出 |
-| --- | --- | --- | --- | --- |
-| 04-wan-fun-control-depth | 深度图，映射 8–28 | 67.4 秒 | 弱：只剩前段围栏，无闭合矩形和斜切角，相机几乎不动 | outputs/wan/fun_control_depth_baseline_00001_.mp4 |
-| 04c-wan-fun-control-depth-tight | 深度图，映射 10–22 | 64.3 秒 | 与上一条逐帧一致，说明深度灰度对该模型基本不起作用 | outputs/wan/fun_control_depth_tight_00001_.mp4 |
-| **04b-wan-fun-control-canny** | Blender 平光预览 → ComfyUI Canny（0.1/0.4） | 67.3 秒 | **好：闭合围栏、每根柱子、斜切角、标记箱、70° 环绕全部对应** | outputs/wan/fun_control_canny_baseline_00001_.mp4 |
-
-  结论：这条基线改为"Blender 平光渲染 → Canny 线稿 → Fun Control"，深度图路线在 Wan2.2 Fun Control 5B 上不可用（两种映射结果完全相同）。Blender 脚本保留深度输出但不再作为控制信号；后续可换 Blender Freestyle 线稿替代 Canny 以获得更干净的边缘。抽帧对照在 productions/math/tests/depth/fence-v001/result/。
-- 选 5B 而非 14B 的原因：与已验证的 TI2V-5B 同架构、同编码器和 VAE，10 GB 即可跑通流程；官方模板注明 5B 质量一般，跑通后再评估 14B fp8（两个 13.3 GB 文件）。
-
 ## 最终验证结果（2026-09-16）
 
 | 测试 | 参数 | 脚本端耗时 | 采样最高整卡显存占用 | 结果 |
@@ -217,3 +196,24 @@ aivideo/
 部署过程中解决的问题：沙箱联网限制、Windows 吊销检查离线、Hugging Face 直连超时、Python 控制台 GBK 无法输出模板 emoji（检查脚本改用 `-X utf8`）。未修改 ComfyUI 核心代码，未添加第三方自定义节点。
 
 维护脚本：`prepare-workflows.py` 从随包官方模板生成本项目基线，重运行会覆盖同名项目工作流；`verify-models.py` 完成下载校验与启用；`run-workflow.py` 发起本地生成并记录结果；`inspect-results.py` 解码成果并保存检查数据。修改工作流前保留副本。
+
+## Blender + 深度图控制视频（2026-09-17 起）
+
+目标：Blender 出精确几何与相机运动，ComfyUI 用 Wan2.2 Fun Control 5B 按深度序列生成画面，解决"围栏、剪角"这类形状必须准确的镜头。角色一致性不由这条路线负责。
+
+- Blender 4.2.23 LTS 便携版：官方 download.blender.org 下载，SHA256 `82e79147…d910cb` 与官方 blender-4.2.23.sha256 一致，解压到 `tools/blender/blender-4.2.23-windows-x64/`，不写注册表。无头运行验证通过，Cycles 可见 RTX 4090 D（OptiX）与 i9-14900K。
+- 场景脚本 `tools/blender/render-depth-sequence.py`：程序化搭建 12×8 围栏（每 2 单位一根柱、两道横杆），右上角按 `--cut` 斜切，相机绕剪角处 70° 环绕并缓慢下降；合成器把 Z 通道按 8–28 单位映射为近白远黑的 8 位灰度。首次渲染 49 帧 1280×704 用时 26 秒（EEVEE，GPU）。输出 `productions/math/tests/depth/fence-v001/`（depth/、preview/、scene.blend、preview.mp4）。
+- 控制视频：`ComfyUI/input/fence-v001-depth.mp4`（H.264 无损级 crf 10，24fps，49 帧）。
+- 模型：`wan2.2_fun_control_5B_bf16.safetensors`（10.00 GB，Comfy-Org 重打包仓库同一提交 c4f60d30，SHA256 已在 downloads/wan-metadata.json），经 HF Mirror 分段续传，verify-models.py 已加入该文件。文本编码器与 VAE 复用现有 umt5 fp8 与 wan2.2_vae。
+- 工作流 `04-wan-fun-control-depth`：由官方模板 video_wan2_2_5B_fun_control 派生，Canny 与参考图节点旁路，直接把深度视频送入 Wan22FunControlToVideo；1280×704、49 帧、20 步、cfg 5、种子 42。ComfyUI 核心自带该节点，未装任何第三方节点。
+- **基线 v1 结果（09-17 17:08）**：权重 SHA256 校验通过；工作流一次成功，脚本端 67.4 秒，采样峰值整卡显存 21689 MiB，输出 `outputs/wan/fun_control_depth_baseline_00001_.mp4`（1280×704、49 帧、2.04 秒）。抽帧（productions/math/tests/depth/fence-v001/result/）：画风符合提示词（卡通木栅栏、草地、木箱），但几何跟随弱：围栏只剩前方一段与右侧一角，没有闭合的矩形和斜切角，相机 70° 环绕几乎没有体现。判断：深度图里细柱细杆占比太小、地面渐变主导；且 5B 控制力有限。下一步：改用预览渲染的 Canny 线稿做控制（结构线条更强）、收窄深度映射范围，两者各跑一次对比。
+- **三种控制信号对比（09-17 17:14，同一提示词、种子 42、20 步、1280×704×49）**：
+
+| 工作流 | 控制信号 | 脚本端耗时 | 几何跟随 | 输出 |
+| --- | --- | --- | --- | --- |
+| 04-wan-fun-control-depth | 深度图，映射 8–28 | 67.4 秒 | 弱：只剩前段围栏，无闭合矩形和斜切角，相机几乎不动 | outputs/wan/fun_control_depth_baseline_00001_.mp4 |
+| 04c-wan-fun-control-depth-tight | 深度图，映射 10–22 | 64.3 秒 | 与上一条逐帧一致，说明深度灰度对该模型基本不起作用 | outputs/wan/fun_control_depth_tight_00001_.mp4 |
+| **04b-wan-fun-control-canny** | Blender 平光预览 → ComfyUI Canny（0.1/0.4） | 67.3 秒 | **好：闭合围栏、每根柱子、斜切角、标记箱、70° 环绕全部对应** | outputs/wan/fun_control_canny_baseline_00001_.mp4 |
+
+  结论：这条基线改为"Blender 平光渲染 → Canny 线稿 → Fun Control"，深度图路线在 Wan2.2 Fun Control 5B 上不可用（两种映射结果完全相同）。Blender 脚本保留深度输出但不再作为控制信号；后续可换 Blender Freestyle 线稿替代 Canny 以获得更干净的边缘。抽帧对照在 productions/math/tests/depth/fence-v001/result/。
+- 选 5B 而非 14B 的原因：与已验证的 TI2V-5B 同架构、同编码器和 VAE，10 GB 即可跑通流程；官方模板注明 5B 质量一般，跑通后再评估 14B fp8（两个 13.3 GB 文件）。
